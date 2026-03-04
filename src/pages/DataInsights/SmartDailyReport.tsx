@@ -20,7 +20,9 @@ import {
   Meh,
   Frown,
   Heart,
-  Share2
+  Share2,
+  Target,
+  List
 } from 'lucide-react';
 import { 
   ResponsiveContainer, 
@@ -377,206 +379,283 @@ export default function SmartDailyReport({ initialDate }: SmartDailyReportProps)
   );
 
   const renderSinglePlatformReport = () => (
-    <>
-      {/* 概览 */}
-      <div className="bg-white p-6 rounded-xl border border-gray-100 shadow-sm">
-        <h2 className="text-lg font-bold text-[#111111] mb-6 flex items-center">
-          <BarChart2 className="w-5 h-5 mr-2 text-[#4A6B82]" />
-          概览
-        </h2>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-6">
-          <div className="p-5 bg-gradient-to-br from-gray-50 to-gray-100 rounded-xl border border-gray-200/50 shadow-sm">
-            <div className="text-sm font-bold text-gray-500 mb-2">发布内容总数</div>
-            <div className="text-3xl font-black text-[#111111] mb-2">10<span className="text-sm font-medium text-gray-500 ml-1">条</span></div>
-          </div>
-          <div className="p-5 bg-gradient-to-br from-gray-50 to-gray-100 rounded-xl border border-gray-200/50 shadow-sm">
-            <div className="text-sm font-bold text-gray-500 mb-2">平台互动总量</div>
-            <div className="flex items-baseline space-x-2 mb-2">
-              <span className="text-3xl font-black text-[#111111]">4.5w</span>
-              <span className="flex items-center text-xs font-bold text-[#65a381] bg-white/60 px-1.5 py-0.5 rounded">
-                <TrendingUp className="w-3 h-3 mr-0.5" /> 12%
-              </span>
-            </div>
-            <div className="text-xs text-gray-600">相比前日同期</div>
-          </div>
-          <div className="p-5 bg-gradient-to-br from-gray-50 to-gray-100 rounded-xl border border-gray-200/50 shadow-sm">
-            <div className="text-sm font-bold text-gray-500 mb-2">情绪变化趋势</div>
-            <div className="flex items-baseline space-x-2 mb-2">
-              <span className="text-3xl font-black text-[#65a381]">向好</span>
-              <span className="flex items-center text-xs font-bold text-[#65a381] bg-white/60 px-1.5 py-0.5 rounded">
-                正面占比 +3%
-              </span>
-            </div>
-            <div className="text-xs text-gray-600">相比前日同期</div>
-          </div>
-          <div className="p-5 bg-gradient-to-br from-gray-50 to-gray-100 rounded-xl border border-gray-200/50 shadow-sm">
-            <div className="text-sm font-bold text-gray-500 mb-2">新增热点话题</div>
-            <div className="text-lg font-black text-[#111111] truncate mb-2">#新版本福利#</div>
-            <div className="text-xs text-gray-600 bg-white/60 px-2 py-1 rounded inline-block">讨论量 2.1w</div>
-          </div>
-        </div>
-
-        {/* 需关注事项 */}
-        <div className="bg-white p-6 rounded-xl border border-[#D96C6C]/30 shadow-sm relative overflow-hidden">
-          <div className="absolute top-0 left-0 w-1 h-full bg-[#D96C6C]"></div>
-          <h2 className="text-lg font-bold text-[#111111] mb-4 flex items-center">
-            <AlertTriangle className="w-5 h-5 mr-2 text-[#D96C6C]" />
-            需关注事项
-          </h2>
-          <ul className="space-y-3">
-            <li className="flex items-start space-x-2 text-sm text-gray-700">
-              <span className="w-1.5 h-1.5 rounded-full bg-[#D96C6C] mt-1.5 shrink-0"></span>
-              <span><strong>高赞负面评论预警：</strong>出现一条关于“暗改掉率”的评论，点赞数已突破 1000，需尽快核实并回应。</span>
-            </li>
-            <li className="flex items-start space-x-2 text-sm text-gray-700">
-              <span className="w-1.5 h-1.5 rounded-full bg-[#D96C6C] mt-1.5 shrink-0"></span>
-              <span><strong>互动量异常下降：</strong>昨日发布的图文互动量较平均水平下降 40%，建议分析内容是否偏离受众喜好。</span>
-            </li>
-          </ul>
-        </div>
-      </div>
-
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-        {/* 玩家核心诉求Top5 */}
-        <div className="bg-white p-6 rounded-xl border border-gray-100 shadow-sm">
-          <h2 className="text-lg font-bold text-[#111111] mb-6 flex items-center">
-            <ThumbsUp className="w-5 h-5 mr-2 text-[#4A6B82]" />
-            玩家核心诉求 Top 5
-          </h2>
-          <div className="space-y-4 h-[320px] overflow-y-auto pr-2">
-            {[
-              { demand: '修复安卓端闪退问题', count: 1250 },
-              { demand: '增加日常任务一键扫荡', count: 980 },
-              { demand: '提升抽卡爆率', count: 850 },
-              { demand: '优化新角色技能手感', count: 620 },
-              { demand: '出更多男角色外观', count: 430 },
-            ].map((item, idx) => (
-              <div key={idx} className="flex items-center justify-between p-3.5 bg-gray-50 rounded-lg">
-                <div className="flex items-center space-x-3">
-                  <span className={`w-6 h-6 rounded-full flex items-center justify-center text-xs font-bold ${idx < 3 ? 'bg-[#4A6B82] text-white' : 'bg-gray-200 text-gray-600'}`}>
-                    {idx + 1}
-                  </span>
-                  <span className="text-sm font-medium text-gray-800">{item.demand}</span>
-                </div>
-                <span className="text-xs text-gray-500">提及 {item.count} 次</span>
-              </div>
-            ))}
-          </div>
-        </div>
-
-        {/* 玩家关注点归类 */}
+    <div className="space-y-8">
+      {viewMode === 'post_analysis' && (
         <div className="bg-white p-6 rounded-xl border border-gray-100 shadow-sm">
           <h2 className="text-lg font-bold text-[#111111] mb-6 flex items-center">
             <FileText className="w-5 h-5 mr-2 text-[#4A6B82]" />
-            玩家关注点归类
+            核心内容提炼
           </h2>
-          <div className="h-72">
-            <ResponsiveContainer width="100%" height="100%">
-              <BarChart
-                data={[
-                  { category: '玩法', count: 3200 },
-                  { category: '美术', count: 2800 },
-                  { category: '活动', count: 2100 },
-                  { category: 'BUG', count: 1500 },
-                  { category: '剧情', count: 900 },
-                  { category: '运营', count: 600 },
-                ]}
-                layout="vertical"
-                margin={{ top: 5, right: 30, left: 30, bottom: 5 }}
-              >
-                <CartesianGrid strokeDasharray="3 3" horizontal={true} vertical={false} />
-                <XAxis type="number" hide />
-                <YAxis dataKey="category" type="category" axisLine={false} tickLine={false} />
-                <Tooltip cursor={{fill: 'transparent'}} formatter={(value: number) => [value, '提及次数']} />
-                <Bar dataKey="count" fill="#4A6B82" radius={[0, 4, 4, 0]} barSize={20} />
-              </BarChart>
-            </ResponsiveContainer>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div className="p-5 bg-gradient-to-br from-gray-50 to-gray-100 rounded-xl border border-gray-200/50 shadow-sm">
+              <h3 className="text-sm font-bold text-[#111111] mb-3 flex items-center">
+                <Target className="w-4 h-4 mr-1.5 text-[#4A6B82]" />
+                文章主旨
+              </h3>
+              <p className="text-sm text-gray-700 leading-relaxed">
+                本文主要介绍了《逆水寒手游》全新版本「幻梦之境」的核心玩法与福利活动，通过详细展示新地图、新角色及配套的签到奖励，旨在提升玩家对新版本的期待值并促进活跃度。
+              </p>
+            </div>
+            <div className="p-5 bg-gradient-to-br from-gray-50 to-gray-100 rounded-xl border border-gray-200/50 shadow-sm">
+              <h3 className="text-sm font-bold text-[#111111] mb-3 flex items-center">
+                <List className="w-4 h-4 mr-1.5 text-[#4A6B82]" />
+                关键信息点
+              </h3>
+              <ul className="space-y-2">
+                <li className="flex items-start text-sm text-gray-700">
+                  <span className="w-1.5 h-1.5 rounded-full bg-[#4A6B82] mt-1.5 mr-2 shrink-0"></span>
+                  <span><strong className="text-[#111111]">新地图开放：</strong>详细展示了「幻梦之境」的场景设计与探索机制。</span>
+                </li>
+                <li className="flex items-start text-sm text-gray-700">
+                  <span className="w-1.5 h-1.5 rounded-full bg-[#4A6B82] mt-1.5 mr-2 shrink-0"></span>
+                  <span><strong className="text-[#111111]">新角色登场：</strong>预告了即将上线的两位全新角色及其背景故事。</span>
+                </li>
+                <li className="flex items-start text-sm text-gray-700">
+                  <span className="w-1.5 h-1.5 rounded-full bg-[#4A6B82] mt-1.5 mr-2 shrink-0"></span>
+                  <span><strong className="text-[#111111]">福利大放送：</strong>明确了版本更新后的签到奖励、首充重置及限时活动福利。</span>
+                </li>
+              </ul>
+            </div>
           </div>
         </div>
-      </div>
+      )}
 
-      {/* 玩家情绪总览 */}
+      {/* 一、基础数据 */}
       <div className="bg-white p-6 rounded-xl border border-gray-100 shadow-sm">
         <h2 className="text-lg font-bold text-[#111111] mb-6 flex items-center">
-          <MessageSquare className="w-5 h-5 mr-2 text-[#4A6B82]" />
-          玩家情绪总览
+          <BarChart2 className="w-5 h-5 mr-2 text-[#4A6B82]" />
+          一、基础数据
         </h2>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-          <div className="flex flex-col items-center justify-center h-64">
-            <ResponsiveContainer width="100%" height="100%">
-              <RechartsPieChart>
-                <Pie
-                  data={[
-                    { name: '正面 65%', value: 65, color: '#65a381' },
-                    { name: '中性 20%', value: 20, color: '#9CA3AF' },
-                    { name: '负面 15%', value: 15, color: '#D96C6C' }
-                  ]}
-                  cx="50%"
-                  cy="50%"
-                  innerRadius={70}
-                  outerRadius={90}
-                  paddingAngle={5}
-                  dataKey="value"
-                >
-                  {
-                    [
-                      { name: '正面 65%', value: 65, color: '#65a381' },
-                      { name: '中性 20%', value: 20, color: '#9CA3AF' },
-                      { name: '负面 15%', value: 15, color: '#D96C6C' }
-                    ].map((entry, index) => (
-                      <Cell key={`cell-${index}`} fill={entry.color} />
-                    ))
-                  }
-                </Pie>
-                <Tooltip formatter={(value: number) => [`${value}%`, '占比']} />
-                <Legend verticalAlign="bottom" height={36}/>
-              </RechartsPieChart>
-            </ResponsiveContainer>
+        <div className="grid grid-cols-2 md:grid-cols-5 gap-4">
+          <div className="p-4 bg-gray-50 rounded-lg border border-gray-100">
+            <div className="text-xs text-gray-500 mb-1">总评论数</div>
+            <div className="text-xl font-black text-[#111111]">12,450</div>
           </div>
-          
-          <div className="space-y-4">
-            <h3 className="text-sm font-bold text-gray-700 mb-2">高赞评论 Top 5</h3>
-            <div className="space-y-3 h-[220px] overflow-y-auto pr-2">
-              <div className="text-xs text-gray-700 bg-white p-2 rounded shadow-sm border-l-2 border-[#65a381]">
-                <div className="flex justify-between items-center mb-1">
-                  <span className="flex items-center text-[#65a381] font-bold"><Smile className="w-3 h-3 mr-1" /> 正面</span>
-                  <span className="text-gray-400">👍 1.2w</span>
-                </div>
-                "新出的时装太美了吧！这波美术真的可以封神了，买爆！"
-              </div>
-              <div className="text-xs text-gray-700 bg-white p-2 rounded shadow-sm border-l-2 border-[#D96C6C]">
-                <div className="flex justify-between items-center mb-1">
-                  <span className="flex items-center text-[#D96C6C] font-bold"><Frown className="w-3 h-3 mr-1" /> 负面</span>
-                  <span className="text-gray-400">👍 9.8k</span>
-                </div>
-                "这日常任务也太肝了吧，每天上班一样，能不能出个扫荡功能？"
-              </div>
-              <div className="text-xs text-gray-700 bg-white p-2 rounded shadow-sm border-l-2 border-[#65a381]">
-                <div className="flex justify-between items-center mb-1">
-                  <span className="flex items-center text-[#65a381] font-bold"><Smile className="w-3 h-3 mr-1" /> 正面</span>
-                  <span className="text-gray-400">👍 8.5k</span>
-                </div>
-                "这次的剧情演出绝了，看得我热血沸腾，给文案加鸡腿！"
-              </div>
-              <div className="text-xs text-gray-700 bg-white p-2 rounded shadow-sm border-l-2 border-[#D96C6C]">
-                <div className="flex justify-between items-center mb-1">
-                  <span className="flex items-center text-[#D96C6C] font-bold"><Frown className="w-3 h-3 mr-1" /> 负面</span>
-                  <span className="text-gray-400">👍 7.5k</span>
-                </div>
-                "更新后疯狂闪退，打个本掉线三次，这优化是怎么做的？"
-              </div>
-              <div className="text-xs text-gray-700 bg-white p-2 rounded shadow-sm border-l-2 border-[#9CA3AF]">
-                <div className="flex justify-between items-center mb-1">
-                  <span className="flex items-center text-gray-500 font-bold"><Meh className="w-3 h-3 mr-1" /> 中性</span>
-                  <span className="text-gray-400">👍 4.1k</span>
-                </div>
-                "新副本机制有点复杂，有没有大佬出个详细的图文攻略？"
-              </div>
+          <div className="p-4 bg-gray-50 rounded-lg border border-gray-100">
+            <div className="text-xs text-gray-500 mb-1">时间范围</div>
+            <div className="text-sm font-bold text-[#111111] mt-1">近24小时</div>
+          </div>
+          <div className="p-4 bg-gray-50 rounded-lg border border-gray-100">
+            <div className="text-xs text-gray-500 mb-1">最高点赞数</div>
+            <div className="text-xl font-black text-[#111111]">3,240</div>
+          </div>
+          <div className="p-4 bg-gray-50 rounded-lg border border-gray-100">
+            <div className="text-xs text-gray-500 mb-1">平均/中位数点赞</div>
+            <div className="text-xl font-black text-[#111111]">45 / 12</div>
+          </div>
+          <div className="p-4 bg-gray-50 rounded-lg border border-gray-100">
+            <div className="text-xs text-gray-500 mb-1">IP分布 Top 5</div>
+            <div className="text-xs font-medium text-gray-700 mt-1 leading-relaxed">
+              广东, 浙江, 江苏, 北京, 四川
             </div>
           </div>
         </div>
       </div>
-    </>
+
+      {/* 二、核心议题 */}
+      <div className="bg-white p-6 rounded-xl border border-gray-100 shadow-sm">
+        <h2 className="text-lg font-bold text-[#111111] mb-6 flex items-center">
+          <MessageSquare className="w-5 h-5 mr-2 text-[#4A6B82]" />
+          二、核心议题
+        </h2>
+        <div className="overflow-x-auto">
+          <table className="w-full text-sm text-left">
+            <thead className="text-xs text-gray-500 bg-gray-50">
+              <tr>
+                <th className="px-4 py-3 font-medium rounded-tl-lg">议题</th>
+                <th className="px-4 py-3 font-medium">频次</th>
+                <th className="px-4 py-3 font-medium">典型观点（原话摘录）</th>
+                <th className="px-4 py-3 font-medium rounded-tr-lg">可转化的传播角度</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-gray-100">
+              <tr>
+                <td className="px-4 py-4 font-medium text-[#111111]">新外观定价与质量</td>
+                <td className="px-4 py-4 text-gray-600">高频 (45%)</td>
+                <td className="px-4 py-4 text-gray-600 italic">"这期衣服好看是好看，但288真的有点割韭菜了，特效还不如上期的。"</td>
+                <td className="px-4 py-4 text-[#4A6B82]">强调设计的细节打磨与材质升级，弱化价格标签，突出"质价比"。</td>
+              </tr>
+              <tr>
+                <td className="px-4 py-4 font-medium text-[#111111]">日常任务减负</td>
+                <td className="px-4 py-4 text-gray-600">中频 (30%)</td>
+                <td className="px-4 py-4 text-gray-600 italic">"每天上班已经够累了，打个本还要坐牢两小时，能不能出个扫荡？"</td>
+                <td className="px-4 py-4 text-[#4A6B82]">发布"开发组减负计划"前瞻，安抚焦躁情绪，传递"听劝"人设。</td>
+              </tr>
+              <tr>
+                <td className="px-4 py-4 font-medium text-[#111111]">职业平衡调整</td>
+                <td className="px-4 py-4 text-gray-600">低频 (15%)</td>
+                <td className="px-4 py-4 text-gray-600 italic">"碎梦现在下本根本没人要，策划自己玩过这职业吗？"</td>
+                <td className="px-4 py-4 text-[#4A6B82]">组织策划面对面直播，公开职业数据胜率，预告后续平衡性调整方向。</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      {/* 三、玩家/用户画像 */}
+      <div className="bg-white p-6 rounded-xl border border-gray-100 shadow-sm">
+        <h2 className="text-lg font-bold text-[#111111] mb-6 flex items-center">
+          <Target className="w-5 h-5 mr-2 text-[#4A6B82]" />
+          三、玩家/用户画像
+        </h2>
+        <div className="overflow-x-auto">
+          <table className="w-full text-sm text-left">
+            <thead className="text-xs text-gray-500 bg-gray-50">
+              <tr>
+                <th className="px-4 py-3 font-medium rounded-tl-lg">群体</th>
+                <th className="px-4 py-3 font-medium">立场</th>
+                <th className="px-4 py-3 font-medium rounded-tr-lg">典型表达（原话摘录）</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-gray-100">
+              <tr>
+                <td className="px-4 py-4 font-medium text-[#111111]">外观党/风景党</td>
+                <td className="px-4 py-4 text-[#65a381]">偏正面，易被视觉打动</td>
+                <td className="px-4 py-4 text-gray-600 italic">"只要衣服够仙，钱包拿去！这套白发绝美，已经冲了。"</td>
+              </tr>
+              <tr>
+                <td className="px-4 py-4 font-medium text-[#111111]">强度党/硬核玩家</td>
+                <td className="px-4 py-4 text-[#D96C6C]">偏负面，对数值敏感</td>
+                <td className="px-4 py-4 text-gray-600 italic">"新本机制太恶心了，容错率极低，野队根本没法打，纯纯折磨人。"</td>
+              </tr>
+              <tr>
+                <td className="px-4 py-4 font-medium text-[#111111]">休闲党/剧情党</td>
+                <td className="px-4 py-4 text-gray-500">中立，关注沉浸感</td>
+                <td className="px-4 py-4 text-gray-600 italic">"主线剧情刀死我了，师兄的配音绝赞，希望能多出点单人内容。"</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      {/* 四、高频关键词/梗 */}
+      <div className="bg-white p-6 rounded-xl border border-gray-100 shadow-sm">
+        <h2 className="text-lg font-bold text-[#111111] mb-6 flex items-center">
+          <FileText className="w-5 h-5 mr-2 text-[#4A6B82]" />
+          四、高频关键词/梗
+        </h2>
+        <div className="mb-4 p-3 bg-yellow-50 border border-yellow-200 rounded-lg flex items-start">
+          <AlertTriangle className="w-4 h-4 text-yellow-600 mt-0.5 mr-2 shrink-0" />
+          <p className="text-sm text-yellow-800">
+            <strong>提示：</strong> 以下提取的社区黑话/梗词，请在确认其含义及情感倾向后，再手动添加至“社区黑话名词库”中，以免造成语义误判。
+          </p>
+        </div>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div className="p-4 border border-gray-100 rounded-lg flex items-start space-x-3">
+            <div className="relative">
+              <span className="inline-block px-2 py-1 bg-gray-100 text-[#111111] font-bold rounded text-sm">牢底坐穿</span>
+              <span className="absolute -top-1 -right-1 w-2 h-2 bg-red-500 rounded-full"></span>
+            </div>
+            <div>
+              <div className="text-xs text-gray-500 mb-1">含义解释</div>
+              <div className="text-sm text-gray-700">指在新副本中反复团灭，耗费大量时间却无法通关的痛苦体验。</div>
+            </div>
+          </div>
+          <div className="p-4 border border-gray-100 rounded-lg flex items-start space-x-3">
+            <div className="relative">
+              <span className="inline-block px-2 py-1 bg-gray-100 text-[#111111] font-bold rounded text-sm">背刺</span>
+              <span className="absolute -top-1 -right-1 w-2 h-2 bg-red-500 rounded-full"></span>
+            </div>
+            <div>
+              <div className="text-xs text-gray-500 mb-1">含义解释</div>
+              <div className="text-sm text-gray-700">指刚花原价购买了道具或外观，官方马上出折扣活动或更优替代品，导致玩家利益受损。</div>
+            </div>
+          </div>
+          <div className="p-4 border border-gray-100 rounded-lg flex items-start space-x-3">
+            <span className="inline-block px-2 py-1 bg-gray-100 text-[#111111] font-bold rounded text-sm">下头</span>
+            <div>
+              <div className="text-xs text-gray-500 mb-1">含义解释</div>
+              <div className="text-sm text-gray-700">形容官方的某项操作或活动策划让人瞬间失去兴趣和好感。</div>
+            </div>
+          </div>
+          <div className="p-4 border border-gray-100 rounded-lg flex items-start space-x-3">
+            <span className="inline-block px-2 py-1 bg-gray-100 text-[#111111] font-bold rounded text-sm">双开门</span>
+            <div>
+              <div className="text-xs text-gray-500 mb-1">含义解释</div>
+              <div className="text-sm text-gray-700">调侃男角色建模肩膀过宽，像双开门冰箱，多带有戏谑或不满意味。</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* 五、情绪分布 */}
+      <div className="bg-white p-6 rounded-xl border border-gray-100 shadow-sm">
+        <h2 className="text-lg font-bold text-[#111111] mb-6 flex items-center">
+          <PieChart className="w-5 h-5 mr-2 text-[#4A6B82]" />
+          五、情绪分布
+        </h2>
+        <div className="overflow-x-auto">
+          <table className="w-full text-sm text-left">
+            <thead className="text-xs text-gray-500 bg-gray-50">
+              <tr>
+                <th className="px-4 py-3 font-medium rounded-tl-lg">情绪类别</th>
+                <th className="px-4 py-3 font-medium">占比估算</th>
+                <th className="px-4 py-3 font-medium rounded-tr-lg">典型表达</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-gray-100">
+              <tr>
+                <td className="px-4 py-4 font-medium text-[#65a381] flex items-center">
+                  <Smile className="w-4 h-4 mr-1" /> 正面 (期待/赞赏)
+                </td>
+                <td className="px-4 py-4 text-gray-600">35%</td>
+                <td className="px-4 py-4 text-gray-600 italic">"美术组加鸡腿！这场景绝了，随便截图都是壁纸。"</td>
+              </tr>
+              <tr>
+                <td className="px-4 py-4 font-medium text-gray-500 flex items-center">
+                  <Meh className="w-4 h-4 mr-1" /> 中性 (观望/建议)
+                </td>
+                <td className="px-4 py-4 text-gray-600">40%</td>
+                <td className="px-4 py-4 text-gray-600 italic">"先观望一下吧，希望这次的掉率能正常点，别再暗改了。"</td>
+              </tr>
+              <tr>
+                <td className="px-4 py-4 font-medium text-[#D96C6C] flex items-center">
+                  <Frown className="w-4 h-4 mr-1" /> 负面 (愤怒/失望)
+                </td>
+                <td className="px-4 py-4 text-gray-600">25%</td>
+                <td className="px-4 py-4 text-gray-600 italic">"吃相太难看了，又肝又氪，退坑保平安。"</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      {/* 六、洞察总结 */}
+      <div className="bg-white p-6 rounded-xl border border-gray-100 shadow-sm">
+        <h2 className="text-lg font-bold text-[#111111] mb-6 flex items-center">
+          <TrendingUp className="w-5 h-5 mr-2 text-[#4A6B82]" />
+          六、洞察总结
+        </h2>
+        
+        <div className="mb-6">
+          <h3 className="text-sm font-bold text-[#111111] mb-3 flex items-center">
+            <span className="w-1.5 h-1.5 rounded-full bg-[#4A6B82] mr-2"></span>
+            核心洞察
+          </h3>
+          <div className="space-y-3 text-sm text-gray-700 leading-relaxed bg-gray-50 p-4 rounded-lg">
+            <p>
+              当前玩家群体的核心矛盾集中在<strong>“高品质内容预期”与“高成本体验（肝/氪）”的落差</strong>上。虽然新版本的美术表现和玩法设计获得了部分玩家的认可，但底层机制（如副本难度、日常耗时、掉落概率）带来的负反馈正在迅速消耗这份好感。
+            </p>
+            <p>
+              特别是“牢底坐穿”和“背刺”等黑话的高频出现，表明玩家对官方的信任度处于较低水平，容易将正常的商业化设计解读为“割韭菜”。
+            </p>
+            <p>
+              <strong>建议策略：</strong>短期内需通过官方渠道（如策划信、直播）释放明确的“减负”信号，并对争议较大的副本难度进行动态调整；长期来看，需重新评估外观定价策略与福利发放节奏，重建玩家信任。
+            </p>
+          </div>
+        </div>
+
+        <div>
+          <h3 className="text-sm font-bold text-[#111111] mb-3 flex items-center">
+            <span className="w-1.5 h-1.5 rounded-full bg-[#4A6B82] mr-2"></span>
+            一句话总结
+          </h3>
+          <div className="text-base font-bold text-[#4A6B82] bg-blue-50 p-4 rounded-lg border border-blue-100 italic">
+            "优质美术难掩底层体验痛点，亟需实质性减负与真诚沟通以挽回信任危机。"
+          </div>
+        </div>
+      </div>
+    </div>
   );
 
   const renderOverview = () => {
