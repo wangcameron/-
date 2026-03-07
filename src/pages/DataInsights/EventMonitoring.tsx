@@ -129,18 +129,18 @@ export default function EventMonitoring() {
               高危预警中
             </span>
           </h1>
-          <p className="text-sm text-gray-500 mt-1">当前监测任务：春季新品发布会舆情</p>
+          <p className="text-sm text-[#6B6B6B] mt-1">当前监测任务：春季新品发布会舆情</p>
         </div>
         <div className="flex items-center space-x-3">
           <div className="relative">
-            <Search className="w-4 h-4 absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" />
+            <Search className="w-4 h-4 absolute left-3 top-1/2 transform -translate-y-1/2 text-[#6B6B6B]" />
             <input 
               type="text" 
               placeholder="搜索关键词..." 
-              className="pl-9 pr-4 py-2 bg-white border border-gray-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-[#111111]/20 focus:border-[#111111]"
+              className="pl-9 pr-4 py-2 bg-white border border-[#E5E5E5] rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-[#111111]/20 focus:border-[#111111]"
             />
           </div>
-          <button type="button" className="p-2 bg-white border border-gray-200 rounded-lg text-gray-600 hover:bg-gray-50">
+          <button type="button" className="p-2 bg-white border border-[#E5E5E5] rounded-lg text-[#6B6B6B] hover:bg-[#F8F9FA]">
             <Filter className="w-4 h-4" />
           </button>
         </div>
@@ -149,13 +149,13 @@ export default function EventMonitoring() {
       <div className="flex-1 flex flex-col lg:flex-row gap-6 min-h-0">
         {/* Left: Dashboard (60%) */}
         <div className="w-full lg:w-[60%] flex flex-col space-y-6">
-          <div className="bg-white rounded-xl p-6 shadow-sm border border-gray-100 flex-1 flex flex-col">
+          <div className="bg-white rounded-xl p-6 shadow-sm border border-[#E5E5E5] flex-1 flex flex-col">
             <div className="flex items-center justify-between mb-6">
               <h3 className="text-base font-bold text-[#111111]">实时情绪走势</h3>
               <div className="flex items-center space-x-4 text-sm">
                 <span className="flex items-center text-[#82A7A6] font-medium"><span className="w-2 h-2 rounded-full bg-[#82A7A6] mr-1.5"></span>正面 24%</span>
                 <span className="flex items-center text-[#D96C6C] font-medium"><span className="w-2 h-2 rounded-full bg-[#D96C6C] mr-1.5"></span>负面 35%</span>
-                <span className="flex items-center text-gray-500 font-medium"><span className="w-2 h-2 rounded-full bg-gray-400 mr-1.5"></span>中性 41%</span>
+                <span className="flex items-center text-[#6B6B6B] font-medium"><span className="w-2 h-2 rounded-full bg-[#E5E5E5] mr-1.5"></span>中性 41%</span>
               </div>
             </div>
             <div className="flex-1 min-h-[300px]">
@@ -190,13 +190,13 @@ export default function EventMonitoring() {
         </div>
 
         {/* Right: Live Feed (40%) */}
-        <div className="w-full lg:w-[40%] bg-white rounded-xl shadow-sm border border-gray-100 flex flex-col overflow-hidden">
-          <div className="p-4 border-b border-gray-100 flex items-center justify-between bg-gray-50/50">
+        <div className="w-full lg:w-[40%] bg-white rounded-xl shadow-sm border border-[#E5E5E5] flex flex-col overflow-hidden">
+          <div className="p-4 border-b border-[#E5E5E5] flex items-center justify-between bg-[#F8F9FA]/50">
             <h3 className="text-base font-bold text-[#111111] flex items-center">
               实时信息流
               <span className="ml-2 w-2 h-2 rounded-full bg-green-500 animate-pulse"></span>
             </h3>
-            <span className="text-xs text-gray-500">每 30 秒刷新</span>
+            <span className="text-xs text-[#6B6B6B]">每 30 秒刷新</span>
           </div>
           <div className="flex-1 overflow-y-auto p-4 space-y-4">
             {FEED_ITEMS.map((item) => (
@@ -205,7 +205,7 @@ export default function EventMonitoring() {
                 className={`relative p-4 rounded-xl border transition-all ${
                   item.isHighRisk 
                     ? 'border-[#D96C6C]/30 bg-[#D96C6C]/5 pl-5' 
-                    : 'border-gray-100 bg-white hover:border-gray-200'
+                    : 'border-[#E5E5E5] bg-white hover:border-[#E5E5E5]'
                 }`}
               >
                 {item.isHighRisk && (
@@ -217,23 +217,23 @@ export default function EventMonitoring() {
                 
                 <div className="flex items-center justify-between mb-2">
                   <div className="flex items-center space-x-2">
-                    <span className="text-xs font-medium px-2 py-0.5 bg-gray-100 text-gray-600 rounded">
+                    <span className="text-xs font-medium px-2 py-0.5 bg-[#F4F4F4] text-[#6B6B6B] rounded">
                       {item.platform}
                     </span>
                     <span className="text-sm font-bold text-[#111111]">{item.author}</span>
-                    <span className="text-xs text-gray-400">{item.time}</span>
+                    <span className="text-xs text-[#6B6B6B]">{item.time}</span>
                   </div>
-                  <button type="button" className="text-gray-400 hover:text-gray-600">
+                  <button type="button" className="text-[#6B6B6B] hover:text-[#6B6B6B]">
                     <MoreHorizontal className="w-4 h-4" />
                   </button>
                 </div>
                 
-                <p className="text-sm text-gray-800 mb-3 leading-relaxed">
+                <p className="text-sm text-[#111111] mb-3 leading-relaxed">
                   {item.content}
                 </p>
                 
                 <div className="flex items-center justify-between">
-                  <div className="flex items-center space-x-4 text-xs text-gray-500">
+                  <div className="flex items-center space-x-4 text-xs text-[#6B6B6B]">
                     <span className="flex items-center"><ThumbsDown className="w-3.5 h-3.5 mr-1" /> {item.engagement.likes}</span>
                     <span className="flex items-center"><MessageCircle className="w-3.5 h-3.5 mr-1" /> {item.engagement.comments}</span>
                     <span className="flex items-center"><Share2 className="w-3.5 h-3.5 mr-1" /> {item.engagement.shares}</span>
@@ -258,12 +258,12 @@ export default function EventMonitoring() {
                       <Bot className="w-4 h-4 text-[#D96C6C]" />
                       <span className="text-xs font-bold text-[#111111]">建议公关回复</span>
                     </div>
-                    <p className="text-xs text-gray-600 mb-2">
+                    <p className="text-xs text-[#6B6B6B] mb-2">
                       您好，非常抱歉给您带来不好的体验！我们已私信您了解具体情况，将为您安排专属客服进行退换货及补偿处理。感谢您的监督！
                     </p>
                     <div className="flex justify-end space-x-2">
-                      <button type="button" className="text-xs px-2 py-1 border border-gray-200 rounded text-gray-600 hover:bg-gray-50">修改</button>
-                      <button type="button" className="text-xs px-2 py-1 bg-[#111111] text-white rounded hover:bg-gray-800">一键回复</button>
+                      <button type="button" className="text-xs px-2 py-1 border border-[#E5E5E5] rounded text-[#6B6B6B] hover:bg-[#F8F9FA]">修改</button>
+                      <button type="button" className="text-xs px-2 py-1 bg-[#111111] text-white rounded hover:bg-black">一键回复</button>
                     </div>
                   </div>
                 )}

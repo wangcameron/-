@@ -120,10 +120,10 @@ export default function ContentInfluencers() {
       <div className="flex items-center justify-between mb-2">
         <div>
           <h1 className="text-2xl font-bold text-[#111111]">内容与达人</h1>
-          <p className="text-sm text-gray-500 mt-1">发现高潜创作者，沉淀爆款内容库</p>
+          <p className="text-sm text-[#6B6B6B] mt-1">发现高潜创作者，沉淀爆款内容库</p>
         </div>
         <div className="flex items-center space-x-3">
-          <div className="flex bg-gray-100 p-1 rounded-lg mr-4">
+          <div className="flex bg-[#F4F4F4] p-1 rounded-lg mr-4">
             {['达人画像', '爆款内容库'].map(tab => (
               <button
                 type="button"
@@ -132,7 +132,7 @@ export default function ContentInfluencers() {
                 className={`px-4 py-2 text-sm font-medium rounded-md transition-colors ${
                   activeTab === tab 
                     ? 'bg-white text-[#111111] shadow-sm' 
-                    : 'text-gray-500 hover:text-[#111111]'
+                    : 'text-[#6B6B6B] hover:text-[#111111]'
                 }`}
               >
                 {tab}
@@ -140,14 +140,14 @@ export default function ContentInfluencers() {
             ))}
           </div>
           <div className="relative">
-            <Search className="w-4 h-4 absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" />
+            <Search className="w-4 h-4 absolute left-3 top-1/2 transform -translate-y-1/2 text-[#6B6B6B]" />
             <input 
               type="text" 
               placeholder="搜索达人/内容..." 
-              className="pl-9 pr-4 py-2 bg-white border border-gray-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-[#111111]/20 focus:border-[#111111]"
+              className="pl-9 pr-4 py-2 bg-white border border-[#E5E5E5] rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-[#111111]/20 focus:border-[#111111]"
             />
           </div>
-          <button type="button" className="p-2 bg-white border border-gray-200 rounded-lg text-gray-600 hover:bg-gray-50">
+          <button type="button" className="p-2 bg-white border border-[#E5E5E5] rounded-lg text-[#6B6B6B] hover:bg-[#F8F9FA]">
             <Filter className="w-4 h-4" />
           </button>
         </div>
@@ -157,16 +157,16 @@ export default function ContentInfluencers() {
         {activeTab === '达人画像' ? (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {INFLUENCERS.map((inf) => (
-              <div key={inf.id} className="bg-white rounded-xl p-6 shadow-sm border border-gray-100 hover:shadow-md transition-shadow flex flex-col relative group">
+              <div key={inf.id} className="bg-white rounded-xl p-6 shadow-sm border border-[#E5E5E5] hover:shadow-md transition-shadow flex flex-col relative group">
                 <button 
                   type="button"
                   onClick={() => toggleSave(inf.id)}
-                  className="absolute top-4 right-4 p-2 rounded-full hover:bg-gray-50 transition-colors z-10"
+                  className="absolute top-4 right-4 p-2 rounded-full hover:bg-[#F8F9FA] transition-colors z-10"
                   title="一键收藏入库"
                 >
                   <Bookmark 
                     className={`w-5 h-5 transition-colors ${
-                      savedInfluencers.includes(inf.id) ? 'fill-[#111111] text-[#111111]' : 'text-gray-400 group-hover:text-gray-600'
+                      savedInfluencers.includes(inf.id) ? 'fill-[#111111] text-[#111111]' : 'text-[#6B6B6B] group-hover:text-[#6B6B6B]'
                     }`} 
                   />
                 </button>
@@ -175,27 +175,27 @@ export default function ContentInfluencers() {
                   <img 
                     src={inf.avatar} 
                     alt={inf.name} 
-                    className="w-16 h-16 rounded-full object-cover border-2 border-gray-50"
+                    className="w-16 h-16 rounded-full object-cover border-2 border-[#F8F9FA]"
                     referrerPolicy="no-referrer"
                   />
                   <div className="flex-1">
                     <div className="flex items-center space-x-2 mb-1">
                       <h3 className="text-base font-bold text-[#111111]">{inf.name}</h3>
-                      <span className="text-xs font-medium px-2 py-0.5 bg-gray-100 text-gray-600 rounded">
+                      <span className="text-xs font-medium px-2 py-0.5 bg-[#F4F4F4] text-[#6B6B6B] rounded">
                         {inf.platform}
                       </span>
                     </div>
-                    <p className="text-xs text-gray-500 line-clamp-1">{inf.recentPost}</p>
+                    <p className="text-xs text-[#6B6B6B] line-clamp-1">{inf.recentPost}</p>
                   </div>
                 </div>
                 
                 <div className="grid grid-cols-2 gap-4 mb-6">
-                  <div className="bg-gray-50 rounded-lg p-3 text-center">
-                    <p className="text-xs text-gray-500 mb-1">粉丝量</p>
+                  <div className="bg-[#F8F9FA] rounded-lg p-3 text-center">
+                    <p className="text-xs text-[#6B6B6B] mb-1">粉丝量</p>
                     <p className="text-lg font-bold text-[#111111] font-mono">{inf.metrics.followers}</p>
                   </div>
-                  <div className="bg-gray-50 rounded-lg p-3 text-center">
-                    <p className="text-xs text-gray-500 mb-1">互动率</p>
+                  <div className="bg-[#F8F9FA] rounded-lg p-3 text-center">
+                    <p className="text-xs text-[#6B6B6B] mb-1">互动率</p>
                     <p className="text-lg font-bold text-[#111111] font-mono flex items-center justify-center">
                       <TrendingUp className="w-4 h-4 text-green-500 mr-1" />
                       {inf.metrics.engagementRate}
@@ -205,14 +205,14 @@ export default function ContentInfluencers() {
                 
                 <div className="mt-auto">
                   <div className="flex items-center space-x-2 mb-2">
-                    <Tag className="w-4 h-4 text-gray-400" />
-                    <span className="text-xs font-medium text-gray-500">AI 智能标签</span>
+                    <Tag className="w-4 h-4 text-[#6B6B6B]" />
+                    <span className="text-xs font-medium text-[#6B6B6B]">AI 智能标签</span>
                   </div>
                   <div className="flex flex-wrap gap-2">
                     {inf.tags.map((tag, idx) => (
                       <span 
                         key={idx} 
-                        className="px-2.5 py-1 bg-gray-100 text-[#111111] border border-gray-200 rounded-md text-xs font-medium"
+                        className="px-2.5 py-1 bg-[#F4F4F4] text-[#111111] border border-[#E5E5E5] rounded-md text-xs font-medium"
                       >
                         {tag}
                       </span>
@@ -223,7 +223,7 @@ export default function ContentInfluencers() {
             ))}
           </div>
         ) : (
-          <div className="flex items-center justify-center h-full text-gray-500">
+          <div className="flex items-center justify-center h-full text-[#6B6B6B]">
             爆款内容库瀑布流开发中...
           </div>
         )}

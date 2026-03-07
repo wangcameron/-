@@ -54,7 +54,7 @@ export default function CompetitorComparison() {
     <div className="w-full px-6 lg:px-10 mx-auto space-y-6 pb-12">
       <div className="flex items-center justify-between mb-8">
         <h1 className="text-2xl font-bold text-[#111111]">竞品对比</h1>
-        <div className="flex bg-gray-100 p-1 rounded-lg">
+        <div className="flex bg-[#F4F4F4] p-1 rounded-lg">
           {['按声量对比', '按互动量对比', '按提及人数对比'].map(tab => (
             <button
               type="button"
@@ -63,7 +63,7 @@ export default function CompetitorComparison() {
               className={`px-4 py-2 text-sm font-medium rounded-md transition-colors ${
                 activeTab === tab 
                   ? 'bg-white text-[#111111] shadow-sm' 
-                  : 'text-gray-500 hover:text-[#111111]'
+                  : 'text-[#6B6B6B] hover:text-[#111111]'
               }`}
             >
               {tab}
@@ -74,7 +74,7 @@ export default function CompetitorComparison() {
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
         {/* SOV (Share of Voice) */}
-        <div className="bg-white rounded-xl p-6 shadow-sm border border-gray-100 lg:col-span-1 flex flex-col">
+        <div className="bg-white rounded-xl p-6 shadow-sm border border-[#E5E5E5] lg:col-span-1 flex flex-col">
           <h3 className="text-base font-bold text-[#111111] mb-6">SOV (声量份额) 战局</h3>
           <div className="flex-1">
             <ResponsiveContainer width="100%" height={300}>
@@ -102,7 +102,7 @@ export default function CompetitorComparison() {
         </div>
 
         {/* Multi-dimensional Trend */}
-        <div className="bg-white rounded-xl p-6 shadow-sm border border-gray-100 lg:col-span-2 flex flex-col">
+        <div className="bg-white rounded-xl p-6 shadow-sm border border-[#E5E5E5] lg:col-span-2 flex flex-col">
           <div className="flex items-center justify-between mb-6">
             <h3 className="text-base font-bold text-[#111111]">多维缠斗曲线</h3>
             <div className="flex items-center space-x-4">

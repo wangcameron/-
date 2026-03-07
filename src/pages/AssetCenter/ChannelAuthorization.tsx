@@ -113,7 +113,7 @@ export default function ChannelAuthorization() {
                 <th className="px-6 py-3 font-medium text-right">操作</th>
               </tr>
             </thead>
-            <tbody className="divide-y divide-gray-100">
+            <tbody className="divide-y divide-[#E5E5E5]">
               {ACCOUNTS.filter(a => a.platform === activePlatform).map((account) => (
                 <tr key={account.id} className="hover:bg-[rgba(0,0,0,0.04)] transition-colors group">
                   <td className="px-6 py-4">

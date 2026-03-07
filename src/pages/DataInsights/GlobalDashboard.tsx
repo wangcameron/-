@@ -249,33 +249,33 @@ export default function GlobalDashboard({ onNavigateToReport }: GlobalDashboardP
     <div className="w-full px-6 lg:px-10 mx-auto space-y-8 pb-12 pt-2">
       <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
         <div className="flex flex-col">
-          <span className="text-sm font-bold text-gray-500 mb-1">官号运营</span>
+          <span className="text-sm font-bold text-[#6B6B6B] mb-1">官号运营</span>
           <div className="flex items-center space-x-3">
             <span className="text-3xl font-black text-[#111111]">逆水寒手游</span>
-            <span className="text-sm text-gray-400 bg-gray-100 px-2 py-0.5 rounded">全局洞察</span>
+            <span className="text-sm text-[#6B6B6B] bg-[#F4F4F4] px-2 py-0.5 rounded">全局洞察</span>
           </div>
         </div>
 
         <div className="flex items-center space-x-4">
           {/* Time Selector */}
           <div className="flex items-center space-x-2">
-            <span className="text-sm font-bold text-gray-500 whitespace-nowrap">时间</span>
+            <span className="text-sm font-bold text-[#6B6B6B] whitespace-nowrap">时间</span>
             <div className="relative">
               <select 
                 value={selectedTimeRange}
                 onChange={(e) => setSelectedTimeRange(e.target.value)}
-                className="appearance-none pl-4 pr-10 py-2 bg-white border border-gray-200 rounded-lg text-sm font-bold text-[#111111] focus:outline-none focus:ring-2 focus:ring-[#111111]/20 hover:bg-gray-50 transition-colors cursor-pointer shadow-sm"
+                className="appearance-none pl-4 pr-10 py-2 bg-white border border-[#E5E5E5] rounded-lg text-sm font-bold text-[#111111] focus:outline-none focus:ring-2 focus:ring-[#111111]/20 hover:bg-[#F8F9FA] transition-colors cursor-pointer shadow-sm"
               >
                 {TIME_RANGES.map(t => <option key={t} value={t}>{t}</option>)}
               </select>
-              <ChevronDown className="w-4 h-4 text-gray-400 absolute right-3 top-1/2 transform -translate-y-1/2 pointer-events-none" />
+              <ChevronDown className="w-4 h-4 text-[#6B6B6B] absolute right-3 top-1/2 transform -translate-y-1/2 pointer-events-none" />
             </div>
             
             {selectedTimeRange === '自定义' && (
               <div className="flex items-center space-x-2 animate-in fade-in slide-in-from-left-2 duration-300">
-                <input type="datetime-local" className="text-xs border border-gray-200 rounded-lg px-3 py-2 bg-white shadow-sm focus:outline-none focus:ring-2 focus:ring-[#111111]/20 text-gray-600" />
-                <span className="text-gray-400 font-medium">至</span>
-                <input type="datetime-local" className="text-xs border border-gray-200 rounded-lg px-3 py-2 bg-white shadow-sm focus:outline-none focus:ring-2 focus:ring-[#111111]/20 text-gray-600" />
+                <input type="datetime-local" className="text-xs border border-[#E5E5E5] rounded-lg px-3 py-2 bg-white shadow-sm focus:outline-none focus:ring-2 focus:ring-[#111111]/20 text-[#6B6B6B]" />
+                <span className="text-[#6B6B6B] font-medium">至</span>
+                <input type="datetime-local" className="text-xs border border-[#E5E5E5] rounded-lg px-3 py-2 bg-white shadow-sm focus:outline-none focus:ring-2 focus:ring-[#111111]/20 text-[#6B6B6B]" />
               </div>
             )}
           </div>
@@ -292,7 +292,7 @@ export default function GlobalDashboard({ onNavigateToReport }: GlobalDashboardP
       </div>
 
       <div className="flex items-center space-x-3">
-        <span className="text-sm font-bold text-gray-500 whitespace-nowrap">平台</span>
+        <span className="text-sm font-bold text-[#6B6B6B] whitespace-nowrap">平台</span>
         <div className="flex flex-wrap gap-2">
           {PLATFORMS.map(p => {
             const isSelected = selectedPlatforms.includes(p);
@@ -304,7 +304,7 @@ export default function GlobalDashboard({ onNavigateToReport }: GlobalDashboardP
                 className={`px-4 py-1.5 rounded-full text-sm font-bold transition-all duration-200 ${
                   isSelected 
                     ? 'bg-[#111111] text-white shadow-md' 
-                    : 'bg-white text-gray-600 border border-gray-200 hover:border-gray-300 hover:bg-gray-50'
+                    : 'bg-white text-[#6B6B6B] border border-[#E5E5E5] hover:border-[#E5E5E5] hover:bg-[#F8F9FA]'
                 }`}
               >
                 {p}
@@ -315,7 +315,7 @@ export default function GlobalDashboard({ onNavigateToReport }: GlobalDashboardP
       </div>
 
       {/* Section 2: Core Metrics & Trend */}
-      <div className="bg-white rounded-2xl p-6 shadow-sm border border-gray-100">
+      <div className="bg-white rounded-2xl p-6 shadow-sm border border-[#E5E5E5]">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
           
           {/* Left: 总览 & Metrics */}
@@ -407,7 +407,7 @@ export default function GlobalDashboard({ onNavigateToReport }: GlobalDashboardP
                   <div className="space-y-1">
                     <p>该值越大，品牌正面声誉越高</p>
                     <p>计算方式为 (正面内容数-负面内容数)/(正面内容数+负面内容数)</p>
-                    <p className="text-gray-400 mt-2">注：需要完成品牌内容情感倾向分析才能得到准确数据。</p>
+                    <p className="text-[#6B6B6B] mt-2">注：需要完成品牌内容情感倾向分析才能得到准确数据。</p>
                   </div>
                 }
                 platformBreakdown={
@@ -427,17 +427,17 @@ export default function GlobalDashboard({ onNavigateToReport }: GlobalDashboardP
           </div>
 
           {/* Right: Trend Chart Section */}
-          <div className="lg:col-span-7 flex flex-col border-t lg:border-t-0 lg:border-l border-gray-100 pt-6 lg:pt-0 lg:pl-8 relative">
+          <div className="lg:col-span-7 flex flex-col border-t lg:border-t-0 lg:border-l border-[#E5E5E5] pt-6 lg:pt-0 lg:pl-8 relative">
             {tooltipPos && selectedDate && (
               <div 
-                className="absolute z-50 bg-white border border-gray-200 shadow-xl rounded-xl p-4 flex flex-col items-center animate-in fade-in zoom-in-95"
+                className="absolute z-50 bg-white border border-[#E5E5E5] shadow-xl rounded-xl p-4 flex flex-col items-center animate-in fade-in zoom-in-95"
                 style={{ left: tooltipPos.x, top: tooltipPos.y - 80, transform: 'translate(-50%, -100%)' }}
               >
-                <div className="text-sm font-bold text-gray-800 mb-3">{selectedDate} 数据异常波动</div>
+                <div className="text-sm font-bold text-[#111111] mb-3">{selectedDate} 数据异常波动</div>
                 <button 
                   type="button"
                   onClick={handleNavigateToReport}
-                  className="bg-[#111111] text-white px-4 py-2 rounded-lg text-sm font-medium hover:bg-gray-800 transition-colors w-full flex items-center justify-center space-x-2"
+                  className="bg-[#111111] text-white px-4 py-2 rounded-lg text-sm font-medium hover:bg-black transition-colors w-full flex items-center justify-center space-x-2"
                 >
                   <FileText className="w-4 h-4" />
                   <span>查看当日智能日报</span>
@@ -445,24 +445,24 @@ export default function GlobalDashboard({ onNavigateToReport }: GlobalDashboardP
                 <button 
                   type="button"
                   onClick={() => setTooltipPos(null)}
-                  className="mt-2 text-xs text-gray-500 hover:text-gray-700"
+                  className="mt-2 text-xs text-[#6B6B6B] hover:text-[#111111]"
                 >
                   关闭
                 </button>
-                <div className="absolute -bottom-2 left-1/2 transform -translate-x-1/2 w-4 h-4 bg-white border-b border-r border-gray-200 rotate-45"></div>
+                <div className="absolute -bottom-2 left-1/2 transform -translate-x-1/2 w-4 h-4 bg-white border-b border-r border-[#E5E5E5] rotate-45"></div>
               </div>
             )}
             <div className="flex items-center justify-between mb-6">
               <h3 className="text-base font-bold text-[#111111]">声量趋势</h3>
               <div className="flex items-center space-x-3">
                 <div className="relative">
-                  <select className="appearance-none pl-3 pr-8 py-1.5 bg-gray-50 border border-gray-200 rounded-lg text-xs font-medium text-gray-600 focus:outline-none focus:ring-2 focus:ring-[#111111]/20 shadow-sm cursor-pointer">
+                  <select className="appearance-none pl-3 pr-8 py-1.5 bg-[#F8F9FA] border border-[#E5E5E5] rounded-lg text-xs font-medium text-[#6B6B6B] focus:outline-none focus:ring-2 focus:ring-[#111111]/20 shadow-sm cursor-pointer">
                     <option>总内容数</option>
                     <option>总互动量</option>
                     <option>爆款内容数</option>
                     <option>社媒健康度</option>
                   </select>
-                  <ChevronDown className="w-3 h-3 text-gray-400 absolute right-2.5 top-1/2 transform -translate-y-1/2 pointer-events-none" />
+                  <ChevronDown className="w-3 h-3 text-[#6B6B6B] absolute right-2.5 top-1/2 transform -translate-y-1/2 pointer-events-none" />
                 </div>
               </div>
             </div>
@@ -520,10 +520,10 @@ export default function GlobalDashboard({ onNavigateToReport }: GlobalDashboardP
       </div>
 
       {/* Section 3: AI Analysis */}
-      <div className="bg-white rounded-2xl p-6 shadow-sm border border-gray-100 mt-8">
+      <div className="bg-white rounded-2xl p-6 shadow-sm border border-[#E5E5E5] mt-8">
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
         {/* Overall Sentiment */}
-        <div className="flex flex-col pr-8 border-r border-gray-100">
+        <div className="flex flex-col pr-8 border-r border-[#E5E5E5]">
           <div className="flex items-center justify-between mb-8">
             <h3 className="text-base font-bold text-[#111111] flex items-center">
               <Heart className="w-5 h-5 text-[#639FAB] mr-2" />
@@ -533,7 +533,7 @@ export default function GlobalDashboard({ onNavigateToReport }: GlobalDashboardP
           <div className="flex-1 flex flex-col">
             <div className="w-full h-3 rounded-full flex overflow-hidden mb-8 shadow-inner">
               <div className="h-full bg-[#65a381] transition-all duration-500" style={{ width: '65%' }}></div>
-              <div className="h-full bg-gray-200 transition-all duration-500" style={{ width: '25%' }}></div>
+              <div className="h-full bg-[#E5E5E5] transition-all duration-500" style={{ width: '25%' }}></div>
               <div className="h-full bg-[#D96C6C] transition-all duration-500" style={{ width: '10%' }}></div>
             </div>
             
@@ -544,26 +544,26 @@ export default function GlobalDashboard({ onNavigateToReport }: GlobalDashboardP
                 </div>
                 <div className="flex-1 pt-0.5">
                   <div className="flex items-baseline justify-between mb-1">
-                    <span className="text-sm font-bold text-gray-800">正面情绪</span>
+                    <span className="text-sm font-bold text-[#111111]">正面情绪</span>
                     <span className="text-lg font-black tabular-nums text-[#65a381]">65%</span>
                   </div>
-                  <p className="text-xs text-gray-500 leading-relaxed">
-                    玩家对<span className="font-medium text-gray-700">新角色技能设计</span>及<span className="font-medium text-gray-700">周年庆福利</span>反馈极佳，相关讨论占正面声量的 72%。
+                  <p className="text-xs text-[#6B6B6B] leading-relaxed">
+                    玩家对<span className="font-medium text-[#111111]">新角色技能设计</span>及<span className="font-medium text-[#111111]">周年庆福利</span>反馈极佳，相关讨论占正面声量的 72%。
                   </p>
                 </div>
               </div>
               
               <div className="flex items-start space-x-4 group">
-                <div className="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center flex-shrink-0 group-hover:bg-gray-200 transition-colors">
-                  <Meh className="w-5 h-5 text-gray-500" />
+                <div className="w-10 h-10 rounded-full bg-[#F4F4F4] flex items-center justify-center flex-shrink-0 group-hover:bg-[#E5E5E5] transition-colors">
+                  <Meh className="w-5 h-5 text-[#6B6B6B]" />
                 </div>
                 <div className="flex-1 pt-0.5">
                   <div className="flex items-baseline justify-between mb-1">
-                    <span className="text-sm font-bold text-gray-800">中性情绪</span>
-                    <span className="text-lg font-black tabular-nums text-gray-600">25%</span>
+                    <span className="text-sm font-bold text-[#111111]">中性情绪</span>
+                    <span className="text-lg font-black tabular-nums text-[#6B6B6B]">25%</span>
                   </div>
-                  <p className="text-xs text-gray-500 leading-relaxed">
-                    主要集中在<span className="font-medium text-gray-700">新手攻略求助</span>与<span className="font-medium text-gray-700">外观穿搭分享</span>，属于常规社区交流，无明显情感倾向。
+                  <p className="text-xs text-[#6B6B6B] leading-relaxed">
+                    主要集中在<span className="font-medium text-[#111111]">新手攻略求助</span>与<span className="font-medium text-[#111111]">外观穿搭分享</span>，属于常规社区交流，无明显情感倾向。
                   </p>
                 </div>
               </div>
@@ -574,11 +574,11 @@ export default function GlobalDashboard({ onNavigateToReport }: GlobalDashboardP
                 </div>
                 <div className="flex-1 pt-0.5">
                   <div className="flex items-baseline justify-between mb-1">
-                    <span className="text-sm font-bold text-gray-800">负面情绪</span>
+                    <span className="text-sm font-bold text-[#111111]">负面情绪</span>
                     <span className="text-lg font-black tabular-nums text-[#D96C6C]">10%</span>
                   </div>
-                  <p className="text-xs text-gray-500 leading-relaxed">
-                    核心痛点为<span className="font-medium text-gray-700">日常任务过肝</span>与<span className="font-medium text-gray-700">客户端闪退</span>，这两类问题占负面声量的 85%，需重点关注。
+                  <p className="text-xs text-[#6B6B6B] leading-relaxed">
+                    核心痛点为<span className="font-medium text-[#111111]">日常任务过肝</span>与<span className="font-medium text-[#111111]">客户端闪退</span>，这两类问题占负面声量的 85%，需重点关注。
                   </p>
                 </div>
               </div>
@@ -594,28 +594,28 @@ export default function GlobalDashboard({ onNavigateToReport }: GlobalDashboardP
               话题热度排行 Top 10
             </h3>
           </div>
-          <div className="flex-1 overflow-y-auto pr-2 space-y-3 max-h-[320px] scrollbar-thin scrollbar-thumb-gray-200 scrollbar-track-transparent">
+          <div className="flex-1 overflow-y-auto pr-2 space-y-3 max-h-[320px] scrollbar-thin scrollbar-thumb-[#E5E5E5] scrollbar-track-transparent">
             {TOPICS.map((topic, idx) => {
               const heatNum = parseFloat(topic.heat);
               const adjustedHeat = (heatNum * timeMultiplier).toFixed(1) + 'w';
               return (
-              <div key={idx} className="flex items-center justify-between p-2.5 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors cursor-pointer">
+              <div key={idx} className="flex items-center justify-between p-2.5 bg-[#F8F9FA] rounded-lg hover:bg-[#F4F4F4] transition-colors cursor-pointer">
                 <div className="flex items-center space-x-3">
                   <span className={`w-6 h-6 rounded-full flex items-center justify-center text-xs font-bold flex-shrink-0 ${
                     idx === 0 ? 'bg-[#F5A623] text-white' : 
                     idx === 1 ? 'bg-[#9B9B9B] text-white' : 
                     idx === 2 ? 'bg-[#A0522D] text-white' : 
-                    'bg-gray-200 text-gray-600'
+                    'bg-[#E5E5E5] text-[#6B6B6B]'
                   }`}>
                     {topic.rank}
                   </span>
                   <span className="text-sm font-bold text-[#111111] line-clamp-1">{topic.tag}</span>
                 </div>
                 <div className="flex items-center space-x-3 flex-shrink-0">
-                  <span className="text-sm tabular-nums text-gray-600">{adjustedHeat}</span>
+                  <span className="text-sm tabular-nums text-[#6B6B6B]">{adjustedHeat}</span>
                   {topic.trend === 'up' ? <TrendingUp className="w-4 h-4 text-[#D96C6C]" /> : 
                    topic.trend === 'down' ? <TrendingDown className="w-4 h-4 text-[#65a381]" /> : 
-                   <div className="w-4 h-px bg-gray-400"></div>}
+                   <div className="w-4 h-px bg-[#E5E5E5]"></div>}
                 </div>
               </div>
             )})}
@@ -623,37 +623,37 @@ export default function GlobalDashboard({ onNavigateToReport }: GlobalDashboardP
         </div>
 
         {/* Player Frequent Topics */}
-        <div className="flex flex-col pl-8 border-l border-gray-100">
+        <div className="flex flex-col pl-8 border-l border-[#E5E5E5]">
           <div className="flex items-center justify-between mb-6">
             <h3 className="text-base font-bold text-[#111111] flex items-center">
               <MessageSquare className="w-5 h-5 text-[#111111] mr-2" />
               玩家频繁讨论话题 Top 10
             </h3>
           </div>
-          <div className="flex-1 overflow-y-auto pr-2 space-y-3 max-h-[320px] scrollbar-thin scrollbar-thumb-gray-200 scrollbar-track-transparent">
+          <div className="flex-1 overflow-y-auto pr-2 space-y-3 max-h-[320px] scrollbar-thin scrollbar-thumb-[#E5E5E5] scrollbar-track-transparent">
             {FREQUENT_TOPICS.map((topic, idx) => {
               const intNum = parseFloat(topic.interactions);
               const adjustedInt = (intNum * timeMultiplier).toFixed(1) + 'w';
               return (
               <div 
                 key={idx} 
-                className="relative p-3 rounded-lg border border-gray-100 bg-gray-50 hover:bg-white hover:shadow-sm transition-all"
+                className="relative p-3 rounded-lg border border-[#E5E5E5] bg-[#F8F9FA] hover:bg-white hover:shadow-sm transition-all"
               >
                 <div className="flex items-start space-x-2 mb-2">
-                  <span className="text-xs font-bold text-gray-400 mt-0.5">{idx + 1}.</span>
-                  <span className="text-sm font-bold text-gray-800 leading-snug">
+                  <span className="text-xs font-bold text-[#6B6B6B] mt-0.5">{idx + 1}.</span>
+                  <span className="text-sm font-bold text-[#111111] leading-snug">
                     {topic.opinion}
                   </span>
                 </div>
                 <div className="flex items-center justify-between mt-2 pl-4">
-                  <div className="flex items-center text-xs text-gray-500">
+                  <div className="flex items-center text-xs text-[#6B6B6B]">
                     <Heart className="w-3 h-3 mr-1" />
                     <span className="tabular-nums">{adjustedInt} 互动</span>
                   </div>
                   <span className={`text-[10px] px-2 py-0.5 rounded font-medium ${
                     topic.sentiment === '正面' ? 'bg-[#65a381]/10 text-[#65a381]' :
                     topic.sentiment === '负面' ? 'bg-[#D96C6C]/10 text-[#D96C6C]' :
-                    'bg-gray-200 text-gray-600'
+                    'bg-[#E5E5E5] text-[#6B6B6B]'
                   }`}>{topic.sentiment}</span>
                 </div>
               </div>
@@ -671,27 +671,27 @@ export default function GlobalDashboard({ onNavigateToReport }: GlobalDashboardP
             onClick={() => setDrawerOpen(false)}
           />
           <div className="relative w-full max-w-xl bg-white rounded-2xl shadow-2xl max-h-[85vh] flex flex-col transform transition-all duration-300 scale-100 animate-in zoom-in-95">
-            <div className="p-6 border-b border-gray-100 flex items-center justify-between">
+            <div className="p-6 border-b border-[#E5E5E5] flex items-center justify-between">
               <h2 className="text-lg font-bold text-[#111111]">{selectedDate} 热门贴文</h2>
               <button 
                 type="button"
                 onClick={() => setDrawerOpen(false)}
-                className="p-2 hover:bg-gray-100 rounded-full transition-colors"
+                className="p-2 hover:bg-[#F4F4F4] rounded-full transition-colors"
               >
                 ×
               </button>
             </div>
             <div className="flex-1 overflow-y-auto p-6 space-y-4">
               {[1, 2, 3, 4, 5, 6, 7, 8].map((i) => (
-                <div key={i} className="p-4 border border-gray-100 rounded-xl hover:shadow-md transition-shadow cursor-pointer">
+                <div key={i} className="p-4 border border-[#E5E5E5] rounded-xl hover:shadow-md transition-shadow cursor-pointer">
                   <div className="flex items-start justify-between mb-2">
-                    <span className="text-xs font-medium px-2 py-1 bg-gray-100 text-[#111111] rounded">小红书</span>
-                    <span className="text-xs text-gray-400 tabular-nums">10:24</span>
+                    <span className="text-xs font-medium px-2 py-1 bg-[#F4F4F4] text-[#111111] rounded">小红书</span>
+                    <span className="text-xs text-[#6B6B6B] tabular-nums">10:24</span>
                   </div>
                   <h4 className="text-sm font-bold text-[#111111] mb-2 line-clamp-2">
                     春季穿搭分享｜这件外套真的太绝了，完全长在我的审美上！
                   </h4>
-                  <div className="flex items-center space-x-4 text-xs text-gray-500 tabular-nums">
+                  <div className="flex items-center space-x-4 text-xs text-[#6B6B6B] tabular-nums">
                     <span className="flex items-center"><Heart className="w-3 h-3 mr-1" /> 1.2w</span>
                     <span className="flex items-center"><MessageSquare className="w-3 h-3 mr-1" /> 342</span>
                   </div>
@@ -716,10 +716,10 @@ export default function GlobalDashboard({ onNavigateToReport }: GlobalDashboardP
       {showPreviewModal && (
         <div className="fixed inset-0 z-[100] flex items-center justify-center bg-black/50 backdrop-blur-sm animate-in fade-in duration-200">
           <div className="bg-white rounded-2xl shadow-2xl w-full max-w-4xl h-[85vh] flex flex-col overflow-hidden animate-in zoom-in-95 duration-200">
-            <div className="flex items-center justify-between p-6 border-b border-gray-100 bg-white z-10">
+            <div className="flex items-center justify-between p-6 border-b border-[#E5E5E5] bg-white z-10">
               <div className="flex items-center space-x-4">
                 <h3 className="text-xl font-bold text-[#111111]">全局洞察报告</h3>
-                <span className="text-sm text-gray-500 bg-gray-100 px-2 py-1 rounded">
+                <span className="text-sm text-[#6B6B6B] bg-[#F4F4F4] px-2 py-1 rounded">
                   {selectedTimeRange} · {selectedPlatforms.join(', ')}
                 </span>
               </div>
@@ -727,7 +727,7 @@ export default function GlobalDashboard({ onNavigateToReport }: GlobalDashboardP
                 <button 
                   type="button"
                   onClick={handleDownloadReport}
-                  className="flex items-center px-4 py-2 bg-white border border-gray-200 text-gray-700 text-sm font-bold rounded-lg hover:bg-gray-50 transition-colors shadow-sm"
+                  className="flex items-center px-4 py-2 bg-white border border-[#E5E5E5] text-[#111111] text-sm font-bold rounded-lg hover:bg-[#F8F9FA] transition-colors shadow-sm"
                 >
                   <Download className="w-4 h-4 mr-2" />
                   下载报告
@@ -746,19 +746,19 @@ export default function GlobalDashboard({ onNavigateToReport }: GlobalDashboardP
                 <button 
                   type="button"
                   onClick={() => setShowPreviewModal(false)}
-                  className="ml-4 text-gray-400 hover:text-gray-600 transition-colors"
+                  className="ml-4 text-[#6B6B6B] hover:text-[#6B6B6B] transition-colors"
                 >
                   <X className="w-6 h-6" />
                 </button>
               </div>
             </div>
             
-            <div className="flex-1 overflow-y-auto bg-gray-50 p-8">
-              <div ref={reportRef} className="max-w-3xl mx-auto bg-white shadow-sm border border-gray-100 rounded-xl p-10 min-h-full">
+            <div className="flex-1 overflow-y-auto bg-[#F8F9FA] p-8">
+              <div ref={reportRef} className="max-w-3xl mx-auto bg-white shadow-sm border border-[#E5E5E5] rounded-xl p-10 min-h-full">
                 {/* Report Header */}
-                <div className="text-center mb-12 border-b border-gray-100 pb-8">
+                <div className="text-center mb-12 border-b border-[#E5E5E5] pb-8">
                   <h1 className="text-3xl font-black text-[#111111] mb-2">{reportTitle}</h1>
-                  <p className="text-gray-500">{getTimeDimensionText()}</p>
+                  <p className="text-[#6B6B6B]">{getTimeDimensionText()}</p>
                 </div>
 
                 {/* Report Content - Visualized */}
@@ -770,29 +770,29 @@ export default function GlobalDashboard({ onNavigateToReport }: GlobalDashboardP
                       总览
                     </h2>
                     <div className="grid grid-cols-4 gap-4">
-                      <div className="bg-gray-50 p-4 rounded-lg text-center">
-                        <div className="text-sm text-gray-500 mb-1">总内容数</div>
+                      <div className="bg-[#F8F9FA] p-4 rounded-lg text-center">
+                        <div className="text-sm text-[#6B6B6B] mb-1">总内容数</div>
                         <div className="text-xl font-black text-[#111111]">{formatNumber(45210 * timeMultiplier)}</div>
                         <div className="text-xs text-red-500 mt-1 flex items-center justify-center">
                           <TrendingDown className="w-3 h-3 mr-1" /> 3.2%
                         </div>
                       </div>
-                      <div className="bg-gray-50 p-4 rounded-lg text-center">
-                        <div className="text-sm text-gray-500 mb-1">总互动量</div>
+                      <div className="bg-[#F8F9FA] p-4 rounded-lg text-center">
+                        <div className="text-sm text-[#6B6B6B] mb-1">总互动量</div>
                         <div className="text-xl font-black text-[#111111]">{formatNumber(892104 * timeMultiplier)}</div>
                         <div className="text-xs text-[#65a381] mt-1 flex items-center justify-center">
                           <TrendingUp className="w-3 h-3 mr-1" /> 24.8%
                         </div>
                       </div>
-                      <div className="bg-gray-50 p-4 rounded-lg text-center">
-                        <div className="text-sm text-gray-500 mb-1">爆款内容数</div>
+                      <div className="bg-[#F8F9FA] p-4 rounded-lg text-center">
+                        <div className="text-sm text-[#6B6B6B] mb-1">爆款内容数</div>
                         <div className="text-xl font-black text-[#111111]">{formatNumber(1204 * timeMultiplier)}</div>
                         <div className="text-xs text-[#65a381] mt-1 flex items-center justify-center">
                           <TrendingUp className="w-3 h-3 mr-1" /> 12.5%
                         </div>
                       </div>
-                      <div className="bg-gray-50 p-4 rounded-lg text-center">
-                        <div className="text-sm text-gray-500 mb-1">社媒健康度</div>
+                      <div className="bg-[#F8F9FA] p-4 rounded-lg text-center">
+                        <div className="text-sm text-[#6B6B6B] mb-1">社媒健康度</div>
                         <div className="text-xl font-black text-[#111111]">78.5</div>
                         <div className="text-xs text-[#65a381] mt-1 flex items-center justify-center">
                           <TrendingUp className="w-3 h-3 mr-1" /> 5.4%
@@ -807,7 +807,7 @@ export default function GlobalDashboard({ onNavigateToReport }: GlobalDashboardP
                       <span className="w-1.5 h-6 bg-[#111111] rounded-full mr-3"></span>
                       声量趋势
                     </h2>
-                    <div className="bg-gray-50 p-6 rounded-xl h-[300px]">
+                    <div className="bg-[#F8F9FA] p-6 rounded-xl h-[300px]">
                       <ResponsiveContainer width="100%" height="100%">
                         <AreaChart
                           data={chartData.slice(-7)}
@@ -862,7 +862,7 @@ export default function GlobalDashboard({ onNavigateToReport }: GlobalDashboardP
                       <span className="w-1.5 h-6 bg-[#111111] rounded-full mr-3"></span>
                       整体大盘情绪
                     </h2>
-                    <div className="flex items-center space-x-8 bg-gray-50 p-6 rounded-xl">
+                    <div className="flex items-center space-x-8 bg-[#F8F9FA] p-6 rounded-xl">
                       <div className="w-40 h-40 flex-shrink-0">
                         <ResponsiveContainer width="100%" height="100%">
                           <PieChart>
@@ -894,13 +894,13 @@ export default function GlobalDashboard({ onNavigateToReport }: GlobalDashboardP
                           <div className="flex justify-between text-sm mb-1">
                             <span className="font-bold text-[#65a381]">正面情绪 (65%)</span>
                           </div>
-                          <p className="text-xs text-gray-600">玩家对新角色技能设计及周年庆福利反馈极佳。</p>
+                          <p className="text-xs text-[#6B6B6B]">玩家对新角色技能设计及周年庆福利反馈极佳。</p>
                         </div>
                         <div>
                           <div className="flex justify-between text-sm mb-1">
                             <span className="font-bold text-[#D96C6C]">负面情绪 (10%)</span>
                           </div>
-                          <p className="text-xs text-gray-600">核心痛点为日常任务过肝与客户端闪退，需重点关注。</p>
+                          <p className="text-xs text-[#6B6B6B]">核心痛点为日常任务过肝与客户端闪退，需重点关注。</p>
                         </div>
                       </div>
                     </div>
@@ -917,16 +917,16 @@ export default function GlobalDashboard({ onNavigateToReport }: GlobalDashboardP
                         const heatNum = parseFloat(topic.heat);
                         const adjustedHeat = (heatNum * timeMultiplier).toFixed(1) + 'w';
                         return (
-                        <div key={idx} className="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
+                        <div key={idx} className="flex items-center justify-between p-3 bg-[#F8F9FA] rounded-lg">
                           <div className="flex items-center space-x-3">
                             <span className={`w-5 h-5 rounded-full flex items-center justify-center text-xs font-bold text-white ${
-                              idx === 0 ? 'bg-[#F5A623]' : idx === 1 ? 'bg-[#9B9B9B]' : idx === 2 ? 'bg-[#A0522D]' : 'bg-gray-300 text-gray-700'
+                              idx === 0 ? 'bg-[#F5A623]' : idx === 1 ? 'bg-[#9B9B9B]' : idx === 2 ? 'bg-[#A0522D]' : 'bg-[#E5E5E5] text-[#111111]'
                             }`}>
                               {idx + 1}
                             </span>
                             <span className="text-sm font-bold text-[#111111]">{topic.tag}</span>
                           </div>
-                          <span className="text-sm text-gray-600">{adjustedHeat} 热度</span>
+                          <span className="text-sm text-[#6B6B6B]">{adjustedHeat} 热度</span>
                         </div>
                       )})}
                     </div>
@@ -943,19 +943,19 @@ export default function GlobalDashboard({ onNavigateToReport }: GlobalDashboardP
                         const intNum = parseFloat(topic.interactions);
                         const adjustedInt = (intNum * timeMultiplier).toFixed(1) + 'w';
                         return (
-                        <div key={idx} className="p-4 bg-gray-50 rounded-lg border border-gray-100">
+                        <div key={idx} className="p-4 bg-[#F8F9FA] rounded-lg border border-[#E5E5E5]">
                           <div className="flex items-start space-x-3 mb-2">
-                            <span className="text-sm font-bold text-gray-400 mt-0.5">{idx + 1}.</span>
+                            <span className="text-sm font-bold text-[#6B6B6B] mt-0.5">{idx + 1}.</span>
                             <span className="text-sm font-bold text-[#111111] leading-snug">
                               {topic.opinion}
                             </span>
                           </div>
                           <div className="flex items-center justify-between pl-6">
-                            <span className="text-xs text-gray-500">{adjustedInt} 互动</span>
+                            <span className="text-xs text-[#6B6B6B]">{adjustedInt} 互动</span>
                             <span className={`text-xs px-2 py-0.5 rounded font-medium ${
                               topic.sentiment === '正面' ? 'bg-[#65a381]/10 text-[#65a381]' :
                               topic.sentiment === '负面' ? 'bg-[#D96C6C]/10 text-[#D96C6C]' :
-                              'bg-gray-200 text-gray-600'
+                              'bg-[#E5E5E5] text-[#6B6B6B]'
                             }`}>{topic.sentiment}</span>
                           </div>
                         </div>
@@ -964,7 +964,7 @@ export default function GlobalDashboard({ onNavigateToReport }: GlobalDashboardP
                   </section>
                 </div>
                 
-                <div className="mt-12 pt-8 border-t border-gray-100 text-center text-xs text-gray-400">
+                <div className="mt-12 pt-8 border-t border-[#E5E5E5] text-center text-xs text-[#6B6B6B]">
                   <p>生成时间：{new Date().toLocaleString()}</p>
                 </div>
               </div>
@@ -980,10 +980,10 @@ function MetricCard({ title, value, trend, isPositive, tooltipContent, platformB
   const [showTooltip, setShowTooltip] = useState(false);
 
   return (
-    <div className="bg-white rounded-xl p-5 shadow-[0_4px_20px_-4px_rgba(0,0,0,0.05)] border border-gray-50 hover:shadow-[0_8px_30px_-4px_rgba(0,0,0,0.08)] transition-all duration-300 group">
+    <div className="bg-white rounded-xl p-5 shadow-[0_4px_20px_-4px_rgba(0,0,0,0.05)] border border-[#F8F9FA] hover:shadow-[0_8px_30px_-4px_rgba(0,0,0,0.08)] transition-all duration-300 group">
         <div className="flex items-center justify-between mb-3">
           <div className="flex items-center space-x-2">
-            <h3 className="text-sm font-bold text-gray-500 group-hover:text-gray-700 transition-colors">{title}</h3>
+            <h3 className="text-sm font-bold text-[#6B6B6B] group-hover:text-[#111111] transition-colors">{title}</h3>
             {tooltipContent && (
               <div className="relative">
                 <button 
@@ -991,12 +991,12 @@ function MetricCard({ title, value, trend, isPositive, tooltipContent, platformB
                   onMouseEnter={() => setShowTooltip(true)}
                   onMouseLeave={() => setShowTooltip(false)}
                   onClick={() => setShowTooltip(!showTooltip)}
-                  className="text-gray-400 hover:text-gray-600 focus:outline-none flex items-center justify-center"
+                  className="text-[#6B6B6B] hover:text-[#6B6B6B] focus:outline-none flex items-center justify-center"
                 >
                   <HelpCircle className="w-4 h-4" />
                 </button>
                 {showTooltip && (
-                  <div className="absolute z-20 w-64 p-3 mt-2 text-xs text-gray-600 bg-white border border-gray-100 rounded-lg shadow-xl -left-2 top-full animate-in fade-in zoom-in-95 pointer-events-none">
+                  <div className="absolute z-20 w-64 p-3 mt-2 text-xs text-[#6B6B6B] bg-white border border-[#E5E5E5] rounded-lg shadow-xl -left-2 top-full animate-in fade-in zoom-in-95 pointer-events-none">
                     {tooltipContent}
                   </div>
                 )}
@@ -1012,15 +1012,15 @@ function MetricCard({ title, value, trend, isPositive, tooltipContent, platformB
           </div>
         </div>
         {platformBreakdown && (
-          <div className="space-y-1.5 pt-3 border-t border-gray-50">
+          <div className="space-y-1.5 pt-3 border-t border-[#F8F9FA]">
             {platformBreakdown.map((item, idx) => (
               <div key={idx} className="flex items-center justify-between text-[11px]">
                 <div className="flex items-center space-x-1.5">
-                  <span className="w-1.5 h-1.5 rounded-full bg-gray-300"></span>
-                  <span className="text-gray-500">{item.name}</span>
-                  <span className="font-medium text-gray-700 tabular-nums">{item.percentage}%</span>
+                  <span className="w-1.5 h-1.5 rounded-full bg-[#E5E5E5]"></span>
+                  <span className="text-[#6B6B6B]">{item.name}</span>
+                  <span className="font-medium text-[#111111] tabular-nums">{item.percentage}%</span>
                 </div>
-                <span className="text-gray-400 tabular-nums">{item.valueText}</span>
+                <span className="text-[#6B6B6B] tabular-nums">{item.valueText}</span>
               </div>
             ))}
           </div>
