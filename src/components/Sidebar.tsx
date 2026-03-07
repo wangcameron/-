@@ -1,44 +1,36 @@
 import { useState } from 'react';
 import { 
   BarChart2, 
-  Users, 
-  Activity, 
-  Image as ImageIcon, 
-  Video, 
-  Bot, 
+  Sparkles, 
   BookOpen, 
-  Link,
-  ChevronDown,
-  ChevronRight,
-  PieChart,
-  Star,
-  FileText,
-  Database
+  Plus,
+  PanelLeftClose,
+  PanelLeftOpen,
+  FileText
 } from 'lucide-react';
 
 const NAV_ITEMS = [
   {
-    title: '官号运营',
-    icon: <BarChart2 className="w-5 h-5" />,
-    children: [
-      { title: '全局洞察', icon: <PieChart className="w-4 h-4" /> },
-      { title: '智能日报', icon: <FileText className="w-4 h-4" /> },
-    ]
+    title: 'Agent',
+    icon: <Plus className="w-4 h-4" strokeWidth={1.5} />,
+  },
+  {
+    title: '数据分析',
+    icon: <BarChart2 className="w-4 h-4" strokeWidth={1.5} />,
   },
   {
     title: '智能创作',
-    icon: <Bot className="w-5 h-5" />,
-    children: [
-      { title: '小红书写手', icon: <FileText className="w-4 h-4" /> },
-    ]
+    icon: <Sparkles className="w-4 h-4" strokeWidth={1.5} />,
   },
   {
-    title: '资产中心',
-    icon: <Database className="w-5 h-5" />,
-    children: [
-      { title: '品牌知识库', icon: <BookOpen className="w-4 h-4" /> },
-    ]
+    title: '资产记忆',
+    icon: <BookOpen className="w-4 h-4" strokeWidth={1.5} />,
   }
+];
+
+const RECENT_ITEMS = [
+  { title: '新版本掉率问题应对', type: 'project' },
+  { title: '逆水寒内容透视报告', type: 'report' },
 ];
 
 interface SidebarProps {
@@ -47,65 +39,102 @@ interface SidebarProps {
 }
 
 export default function Sidebar({ activeNav, setActiveNav }: SidebarProps) {
-  const [expandedGroups, setExpandedGroups] = useState<string[]>(['官号运营', '智能创作', '资产中心']);
-
-  const toggleGroup = (title: string) => {
-    setExpandedGroups(prev => 
-      prev.includes(title) ? prev.filter(t => t !== title) : [...prev, title]
-    );
-  };
+  const [isExpanded, setIsExpanded] = useState(false);
 
   return (
-    <aside className="w-64 bg-white border-r border-gray-200 h-full flex flex-col flex-shrink-0">
-      <div className="pt-[46px] pb-6 px-6 flex items-center justify-center">
-        <span className="text-3xl font-black tracking-tighter flex items-baseline">
-          <span className="text-[#111111] italic pr-1 font-sans">UTen</span>
-          <span className="text-[#E63946] text-2xl not-italic">幼狮</span>
-        </span>
-      </div>
-      
-      <div className="flex-1 overflow-y-auto flex flex-col mt-[64px]">
-        <nav className="px-4 space-y-6">
-          {NAV_ITEMS.map((group) => (
-            <div key={group.title}>
-              <button 
-                type="button"
-                onClick={() => toggleGroup(group.title)}
-                className="flex items-center justify-between w-full text-base font-bold text-gray-800 hover:text-[#111111] transition-colors mb-3 px-2"
-              >
-                <div className="flex items-center space-x-3">
-                  {group.icon}
-                  <span>{group.title}</span>
-                </div>
-                {expandedGroups.includes(group.title) ? (
-                  <ChevronDown className="w-5 h-5" />
-                ) : (
-                  <ChevronRight className="w-5 h-5" />
-                )}
-              </button>
-              
-              {expandedGroups.includes(group.title) && (
-                <div className="space-y-1.5 mt-2">
-                  {group.children.map((child) => (
-                    <button
-                      type="button"
-                      key={child.title}
-                      onClick={() => setActiveNav(child.title)}
-                      className={`w-full flex items-center space-x-3 px-3 py-2.5 rounded-lg text-base transition-all duration-200 ${
-                        activeNav === child.title 
-                          ? 'bg-[#4A6B82]/10 text-[#4A6B82] font-bold' 
-                          : 'text-gray-700 font-medium hover:bg-gray-50 hover:text-[#111111]'
-                      }`}
-                    >
-                      {child.icon}
-                      <span>{child.title}</span>
-                    </button>
-                  ))}
-                </div>
-              )}
+    <aside 
+      className={`h-full flex flex-col flex-shrink-0 z-20 relative bg-[#F5F5F4] transition-all duration-300 ease-in-out overflow-x-hidden ${
+        isExpanded ? 'w-[240px]' : 'w-[56px]'
+      }`}
+    >
+      {/* Top Section */}
+      <div className="flex flex-col px-2 pt-4 pb-2 space-y-2">
+        <div className={`flex items-center ${isExpanded ? 'justify-between px-2' : 'justify-center'} mb-4`}>
+          {isExpanded && (
+            <img 
+              src="https://img11.360buyimg.com/ddimg/jfs/t1/397186/39/18620/11134/69aa740dF82ce0a55/00153cb0e5f7c135.jpg" 
+              alt="Logo" 
+              className="h-6 object-contain mix-blend-multiply"
+              referrerPolicy="no-referrer"
+            />
+          )}
+          <button 
+            onClick={() => setIsExpanded(!isExpanded)}
+            className="p-1.5 rounded-full text-[#6B6B6B] hover:bg-[rgba(0,0,0,0.04)] hover:text-[#242424] transition-colors group"
+            title={isExpanded ? "Close sidebar" : "Open sidebar"}
+          >
+            <div className="transition-transform duration-200 group-hover:scale-110 group-active:scale-90">
+              {isExpanded ? <PanelLeftClose className="w-[18px] h-[18px]" strokeWidth={1.5} /> : <PanelLeftOpen className="w-[18px] h-[18px]" strokeWidth={1.5} />}
             </div>
-          ))}
-        </nav>
+          </button>
+        </div>
+      </div>
+
+      {/* Main Navigation */}
+      <div className="flex-1 flex flex-col px-2 py-2 space-y-1 overflow-y-auto overflow-x-hidden">
+        {NAV_ITEMS.map((item) => {
+          const isActive = activeNav === item.title;
+          
+          return (
+            <button 
+              key={item.title}
+              onClick={() => setActiveNav(item.title)}
+              className={`group flex items-center ${isExpanded ? 'justify-start px-3 py-2.5' : 'justify-center w-10 h-10 mx-auto'} rounded-full transition-colors ${
+                isActive ? 'bg-white text-[#242424] font-medium shadow-sm' : 'text-[#6B6B6B] hover:bg-[rgba(0,0,0,0.04)] font-normal'
+              }`}
+              title={!isExpanded ? item.title : undefined}
+            >
+              <div className="flex-shrink-0 transition-transform duration-200 group-hover:scale-110 group-active:scale-90">
+                {item.icon}
+              </div>
+              {isExpanded && <span className="ml-3 text-[14px] truncate">{item.title}</span>}
+            </button>
+          );
+        })}
+
+        {/* Recents Section */}
+        <div className="mt-8 mb-2">
+          {isExpanded ? (
+            <div className="px-3 py-1 text-[12px] font-medium text-[#6B6B6B] mb-1">
+              最近
+            </div>
+          ) : (
+            <div className="w-full flex justify-center mt-6 mb-2">
+              <div className="w-4 border-t border-[#E5E5E5]"></div>
+            </div>
+          )}
+          
+          <div className="space-y-0.5">
+            {RECENT_ITEMS.map((item, idx) => (
+              <button 
+                key={idx}
+                className={`group flex items-center ${isExpanded ? 'justify-start px-3 py-2' : 'justify-center w-10 h-10 mx-auto'} rounded-md transition-colors text-[#444444] hover:bg-[#EAE8E3]/60 font-normal w-full`}
+                title={!isExpanded ? item.title : undefined}
+              >
+                <div className="flex-shrink-0 transition-transform duration-200 group-hover:scale-110 group-active:scale-90">
+                  {item.type === 'project' ? (
+                    <FileText className="w-4 h-4" strokeWidth={1.5} />
+                  ) : (
+                    <BarChart2 className="w-4 h-4" strokeWidth={1.5} />
+                  )}
+                </div>
+                {isExpanded && <span className="ml-3 text-[14px] truncate">{item.title}</span>}
+              </button>
+            ))}
+          </div>
+        </div>
+      </div>
+
+      {/* Bottom Section (User Profile Placeholder) */}
+      <div className="p-2 border-t border-[#E5E5E5]">
+        <button 
+          className={`group flex items-center ${isExpanded ? 'justify-start px-3 py-2' : 'justify-center w-10 h-10 mx-auto'} rounded-md text-[#444444] hover:bg-[#EAE8E3]/60 transition-colors w-full`}
+        >
+          <div className="w-5 h-5 rounded-full bg-[#242424] text-white flex items-center justify-center text-[10px] font-medium flex-shrink-0 transition-transform duration-200 group-hover:scale-110 group-active:scale-90">
+            U
+          </div>
+          {isExpanded && <span className="ml-3 text-[14px] font-normal truncate">User</span>}
+        </button>
       </div>
     </aside>
   );

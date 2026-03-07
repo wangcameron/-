@@ -1,14 +1,70 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&family=Noto+Serif+SC:wght@400;500;600;700&display=swap');
 @import "tailwindcss";
 
 @theme {
   --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
   --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
+  --font-serif: "Noto Serif SC", ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;
+  
+  --color-app-bg: #FBFBFA;
+  --color-surface: #FFFFFF;
+  --color-ai-accent: #E8F5F5;
+  --color-text-primary: #242424;
+  --color-text-secondary: #6B6B6B;
+  --color-border-light: #E5E5E5;
+  --color-danger: #A94442;
+
+  --animate-breathe: breathe 8s ease-in-out infinite;
+  --animate-sweep: sweep 1.5s infinite;
+  --animate-wave: wave 2s linear infinite;
+
+  @keyframes breathe {
+    0%, 100% { opacity: 0.1; transform: scale(1); }
+    50% { opacity: 0.2; transform: scale(1.02); }
+  }
+
+  @keyframes sweep {
+    100% { left: 200%; }
+  }
+
+  @keyframes wave {
+    0% { background-position: 200% 0; }
+    100% { background-position: -200% 0; }
+  }
+}
+
+@layer utilities {
+  .animate-sweep {
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .animate-sweep::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 50%;
+    height: 100%;
+    background: linear-gradient(
+      to right,
+      transparent,
+      rgba(255, 255, 255, 0.6),
+      transparent
+    );
+    animation: var(--animate-sweep);
+  }
+
+  .skeleton-wave {
+    background: linear-gradient(90deg, #F0F9F9 25%, #E8F5F5 50%, #F0F9F9 75%);
+    background-size: 400% 100%;
+    animation: var(--animate-wave);
+  }
 }
 
 body {
-  font-family: "Inter", sans-serif;
-  background-color: #F8F9FA;
-  color: #111111;
+  font-family: var(--font-sans);
+  background-color: var(--color-app-bg);
+  color: var(--color-text-primary);
   -webkit-font-smoothing: antialiased;
 }

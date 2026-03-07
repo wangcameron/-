@@ -73,7 +73,7 @@ const PIE_DATA = [
   { name: '微信公众号', value: 400 },
 ];
 
-const COLORS = ['#4A6B82', '#639FAB', '#82A7A6', '#B4C5C6'];
+const COLORS = ['#111111', '#639FAB', '#82A7A6', '#B4C5C6'];
 
 const TOPICS = [
   { rank: 1, tag: '#春季新版本#', heat: '98.5w', trend: 'up' },
@@ -264,7 +264,7 @@ export default function GlobalDashboard({ onNavigateToReport }: GlobalDashboardP
               <select 
                 value={selectedTimeRange}
                 onChange={(e) => setSelectedTimeRange(e.target.value)}
-                className="appearance-none pl-4 pr-10 py-2 bg-white border border-gray-200 rounded-lg text-sm font-bold text-[#111111] focus:outline-none focus:ring-2 focus:ring-[#4A6B82]/20 hover:bg-gray-50 transition-colors cursor-pointer shadow-sm"
+                className="appearance-none pl-4 pr-10 py-2 bg-white border border-gray-200 rounded-lg text-sm font-bold text-[#111111] focus:outline-none focus:ring-2 focus:ring-[#111111]/20 hover:bg-gray-50 transition-colors cursor-pointer shadow-sm"
               >
                 {TIME_RANGES.map(t => <option key={t} value={t}>{t}</option>)}
               </select>
@@ -273,9 +273,9 @@ export default function GlobalDashboard({ onNavigateToReport }: GlobalDashboardP
             
             {selectedTimeRange === '自定义' && (
               <div className="flex items-center space-x-2 animate-in fade-in slide-in-from-left-2 duration-300">
-                <input type="datetime-local" className="text-xs border border-gray-200 rounded-lg px-3 py-2 bg-white shadow-sm focus:outline-none focus:ring-2 focus:ring-[#4A6B82]/20 text-gray-600" />
+                <input type="datetime-local" className="text-xs border border-gray-200 rounded-lg px-3 py-2 bg-white shadow-sm focus:outline-none focus:ring-2 focus:ring-[#111111]/20 text-gray-600" />
                 <span className="text-gray-400 font-medium">至</span>
-                <input type="datetime-local" className="text-xs border border-gray-200 rounded-lg px-3 py-2 bg-white shadow-sm focus:outline-none focus:ring-2 focus:ring-[#4A6B82]/20 text-gray-600" />
+                <input type="datetime-local" className="text-xs border border-gray-200 rounded-lg px-3 py-2 bg-white shadow-sm focus:outline-none focus:ring-2 focus:ring-[#111111]/20 text-gray-600" />
               </div>
             )}
           </div>
@@ -283,7 +283,7 @@ export default function GlobalDashboard({ onNavigateToReport }: GlobalDashboardP
           <button 
             type="button"
             onClick={handleGenerateReport}
-            className="flex items-center bg-[#4A6B82] text-white px-4 py-2 rounded-lg text-sm font-bold hover:bg-[#3A5B72] transition-colors shadow-sm"
+            className="flex items-center bg-[#111111] text-white px-4 py-2 rounded-lg text-sm font-bold hover:bg-black transition-colors shadow-sm"
           >
             <FileText className="w-4 h-4 mr-2" />
             生成报告
@@ -456,7 +456,7 @@ export default function GlobalDashboard({ onNavigateToReport }: GlobalDashboardP
               <h3 className="text-base font-bold text-[#111111]">声量趋势</h3>
               <div className="flex items-center space-x-3">
                 <div className="relative">
-                  <select className="appearance-none pl-3 pr-8 py-1.5 bg-gray-50 border border-gray-200 rounded-lg text-xs font-medium text-gray-600 focus:outline-none focus:ring-2 focus:ring-[#4A6B82]/20 shadow-sm cursor-pointer">
+                  <select className="appearance-none pl-3 pr-8 py-1.5 bg-gray-50 border border-gray-200 rounded-lg text-xs font-medium text-gray-600 focus:outline-none focus:ring-2 focus:ring-[#111111]/20 shadow-sm cursor-pointer">
                     <option>总内容数</option>
                     <option>总互动量</option>
                     <option>爆款内容数</option>
@@ -479,8 +479,8 @@ export default function GlobalDashboard({ onNavigateToReport }: GlobalDashboardP
                     <stop offset="95%" stopColor="#B4C5C6" stopOpacity={0}/>
                   </linearGradient>
                   <linearGradient id="colorDouyin" x1="0" y1="0" x2="0" y2="1">
-                    <stop offset="5%" stopColor="#4A6B82" stopOpacity={0.3}/>
-                    <stop offset="95%" stopColor="#4A6B82" stopOpacity={0}/>
+                    <stop offset="5%" stopColor="#111111" stopOpacity={0.3}/>
+                    <stop offset="95%" stopColor="#111111" stopOpacity={0}/>
                   </linearGradient>
                   <linearGradient id="colorWeibo" x1="0" y1="0" x2="0" y2="1">
                     <stop offset="5%" stopColor="#82A7A6" stopOpacity={0.3}/>
@@ -504,7 +504,7 @@ export default function GlobalDashboard({ onNavigateToReport }: GlobalDashboardP
                   <Area type="monotone" dataKey="小红书" stroke="#B4C5C6" strokeWidth={2} fillOpacity={1} fill="url(#colorXiaohongshu)" activeDot={{ r: 6, strokeWidth: 0 }} isAnimationActive={false} />
                 )}
                 {(selectedPlatforms.includes('全部') || selectedPlatforms.includes('抖音')) && (
-                  <Area type="monotone" dataKey="抖音" stroke="#4A6B82" strokeWidth={2} fillOpacity={1} fill="url(#colorDouyin)" activeDot={{ r: 6, strokeWidth: 0 }} isAnimationActive={false} />
+                  <Area type="monotone" dataKey="抖音" stroke="#111111" strokeWidth={2} fillOpacity={1} fill="url(#colorDouyin)" activeDot={{ r: 6, strokeWidth: 0 }} isAnimationActive={false} />
                 )}
                 {(selectedPlatforms.includes('全部') || selectedPlatforms.includes('微博')) && (
                   <Area type="monotone" dataKey="微博" stroke="#82A7A6" strokeWidth={2} fillOpacity={1} fill="url(#colorWeibo)" activeDot={{ r: 6, strokeWidth: 0 }} isAnimationActive={false} />
@@ -626,7 +626,7 @@ export default function GlobalDashboard({ onNavigateToReport }: GlobalDashboardP
         <div className="flex flex-col pl-8 border-l border-gray-100">
           <div className="flex items-center justify-between mb-6">
             <h3 className="text-base font-bold text-[#111111] flex items-center">
-              <MessageSquare className="w-5 h-5 text-[#4A6B82] mr-2" />
+              <MessageSquare className="w-5 h-5 text-[#111111] mr-2" />
               玩家频繁讨论话题 Top 10
             </h3>
           </div>
@@ -685,7 +685,7 @@ export default function GlobalDashboard({ onNavigateToReport }: GlobalDashboardP
               {[1, 2, 3, 4, 5, 6, 7, 8].map((i) => (
                 <div key={i} className="p-4 border border-gray-100 rounded-xl hover:shadow-md transition-shadow cursor-pointer">
                   <div className="flex items-start justify-between mb-2">
-                    <span className="text-xs font-medium px-2 py-1 bg-[#4A6B82]/10 text-[#4A6B82] rounded">小红书</span>
+                    <span className="text-xs font-medium px-2 py-1 bg-gray-100 text-[#111111] rounded">小红书</span>
                     <span className="text-xs text-gray-400 tabular-nums">10:24</span>
                   </div>
                   <h4 className="text-sm font-bold text-[#111111] mb-2 line-clamp-2">
@@ -738,7 +738,7 @@ export default function GlobalDashboard({ onNavigateToReport }: GlobalDashboardP
                     // Mock push to Feishu
                     alert('已成功推送至飞书群组');
                   }}
-                  className="flex items-center px-4 py-2 bg-[#4A6B82] text-white text-sm font-bold rounded-lg hover:bg-[#3A5B72] transition-colors shadow-sm"
+                  className="flex items-center px-4 py-2 bg-[#111111] text-white text-sm font-bold rounded-lg hover:bg-black transition-colors shadow-sm"
                 >
                   <Share2 className="w-4 h-4 mr-2" />
                   推送至飞书
@@ -766,7 +766,7 @@ export default function GlobalDashboard({ onNavigateToReport }: GlobalDashboardP
                   {/* 1. Core Metrics */}
                   <section>
                     <h2 className="text-xl font-bold text-[#111111] mb-6 flex items-center">
-                      <span className="w-1.5 h-6 bg-[#4A6B82] rounded-full mr-3"></span>
+                      <span className="w-1.5 h-6 bg-[#111111] rounded-full mr-3"></span>
                       总览
                     </h2>
                     <div className="grid grid-cols-4 gap-4">
@@ -804,7 +804,7 @@ export default function GlobalDashboard({ onNavigateToReport }: GlobalDashboardP
                   {/* 2. Volume Trend */}
                   <section>
                     <h2 className="text-xl font-bold text-[#111111] mb-6 flex items-center">
-                      <span className="w-1.5 h-6 bg-[#4A6B82] rounded-full mr-3"></span>
+                      <span className="w-1.5 h-6 bg-[#111111] rounded-full mr-3"></span>
                       声量趋势
                     </h2>
                     <div className="bg-gray-50 p-6 rounded-xl h-[300px]">
@@ -819,8 +819,8 @@ export default function GlobalDashboard({ onNavigateToReport }: GlobalDashboardP
                               <stop offset="95%" stopColor="#B4C5C6" stopOpacity={0}/>
                             </linearGradient>
                             <linearGradient id="colorDouyin" x1="0" y1="0" x2="0" y2="1">
-                              <stop offset="5%" stopColor="#4A6B82" stopOpacity={0.3}/>
-                              <stop offset="95%" stopColor="#4A6B82" stopOpacity={0}/>
+                              <stop offset="5%" stopColor="#111111" stopOpacity={0.3}/>
+                              <stop offset="95%" stopColor="#111111" stopOpacity={0}/>
                             </linearGradient>
                             <linearGradient id="colorWeibo" x1="0" y1="0" x2="0" y2="1">
                               <stop offset="5%" stopColor="#82A7A6" stopOpacity={0.3}/>
@@ -843,7 +843,7 @@ export default function GlobalDashboard({ onNavigateToReport }: GlobalDashboardP
                             <Area type="monotone" dataKey="小红书" stroke="#B4C5C6" strokeWidth={2} fillOpacity={1} fill="url(#colorXiaohongshu)" isAnimationActive={false} />
                           )}
                           {(selectedPlatforms.includes('全部') || selectedPlatforms.includes('抖音')) && (
-                            <Area type="monotone" dataKey="抖音" stroke="#4A6B82" strokeWidth={2} fillOpacity={1} fill="url(#colorDouyin)" isAnimationActive={false} />
+                            <Area type="monotone" dataKey="抖音" stroke="#111111" strokeWidth={2} fillOpacity={1} fill="url(#colorDouyin)" isAnimationActive={false} />
                           )}
                           {(selectedPlatforms.includes('全部') || selectedPlatforms.includes('微博')) && (
                             <Area type="monotone" dataKey="微博" stroke="#82A7A6" strokeWidth={2} fillOpacity={1} fill="url(#colorWeibo)" isAnimationActive={false} />
@@ -859,7 +859,7 @@ export default function GlobalDashboard({ onNavigateToReport }: GlobalDashboardP
                   {/* 3. Sentiment Analysis */}
                   <section>
                     <h2 className="text-xl font-bold text-[#111111] mb-6 flex items-center">
-                      <span className="w-1.5 h-6 bg-[#4A6B82] rounded-full mr-3"></span>
+                      <span className="w-1.5 h-6 bg-[#111111] rounded-full mr-3"></span>
                       整体大盘情绪
                     </h2>
                     <div className="flex items-center space-x-8 bg-gray-50 p-6 rounded-xl">
@@ -909,7 +909,7 @@ export default function GlobalDashboard({ onNavigateToReport }: GlobalDashboardP
                   {/* 4. Hot Topics */}
                   <section>
                     <h2 className="text-xl font-bold text-[#111111] mb-6 flex items-center">
-                      <span className="w-1.5 h-6 bg-[#4A6B82] rounded-full mr-3"></span>
+                      <span className="w-1.5 h-6 bg-[#111111] rounded-full mr-3"></span>
                       话题热度排行 Top 10
                     </h2>
                     <div className="space-y-3">
@@ -935,7 +935,7 @@ export default function GlobalDashboard({ onNavigateToReport }: GlobalDashboardP
                   {/* 5. Player Frequent Topics */}
                   <section>
                     <h2 className="text-xl font-bold text-[#111111] mb-6 flex items-center">
-                      <span className="w-1.5 h-6 bg-[#4A6B82] rounded-full mr-3"></span>
+                      <span className="w-1.5 h-6 bg-[#111111] rounded-full mr-3"></span>
                       玩家频繁讨论话题 Top 10
                     </h2>
                     <div className="space-y-3">

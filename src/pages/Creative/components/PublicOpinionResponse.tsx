@@ -67,7 +67,7 @@ const KNOWLEDGE_FOLDERS = [
 
 // --- Component ---
 
-export default function PublicOpinionResponse() {
+export default function PublicOpinionResponse({ initialParams }: { initialParams?: any }) {
   // State
   const [view, setView] = useState<'list' | 'create' | 'detail'>('list');
   const [activeFunction, setActiveFunction] = useState<'response' | 'proposition'>('response');
@@ -99,6 +99,30 @@ export default function PublicOpinionResponse() {
   const [chatInput, setChatInput] = useState('');
 
   const fileInputRef = useRef<HTMLInputElement>(null);
+
+  // Handle initialParams from cross-module navigation
+  React.useEffect(() => {
+    if (initialParams && initialParams.viewpoint) {
+      const newProject: Project = {
+        id: Date.now().toString(),
+        name: `联动生成: ${initialParams.viewpoint.substring(0, 15)}...`,
+        createdAt: new Date().toISOString().split('T')[0],
+        status: 'draft',
+        articles: [],
+        analysis: {
+          summary: '从智能日报联动导入的观点',
+          viewpoints: [initialParams.viewpoint]
+        }
+      };
+      setProjects(prev => [newProject, ...prev]);
+      setCurrentProject(newProject);
+      setView('detail');
+      setUploadStatus('done');
+      setAnalysisResult(newProject.analysis!);
+      setSelectedViewpoints([initialParams.viewpoint]);
+      setConfig(prev => ({ ...prev, selectedViewpoints: [initialParams.viewpoint] }));
+    }
+  }, [initialParams]);
 
   // --- Handlers ---
 
@@ -397,18 +421,17 @@ export default function PublicOpinionResponse() {
       {/* Header */}
       <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
         <div className="flex flex-col">
-          <span className="text-sm font-bold text-gray-500 mb-1">智能创作</span>
+          <span className="text-sm font-bold text-[#6B6B6B] mb-1">智能创作</span>
           <div className="flex items-center space-x-3">
-            <span className="text-3xl font-black text-[#111111]">逆水寒手游</span>
-            <span className="text-sm text-gray-400 bg-gray-100 px-2 py-0.5 rounded">小红书写手</span>
+            <span className="text-3xl font-black text-[#111111]">小红书写手</span>
           </div>
         </div>
       </div>
 
       {/* Function Selection */}
       <div className="flex space-x-6 border-b border-gray-200 mb-6">
-        <button type="button" className="pb-3 text-sm font-bold text-[#4A6B82] border-b-2 border-[#4A6B82]">观点回应</button>
-        <button type="button" className="pb-3 text-sm font-medium text-gray-500 hover:text-[#111111] transition-colors">命题文章</button>
+        <button type="button" className="pb-3 text-sm font-bold text-[#111111] border-b-2 border-[#111111]">观点回应</button>
+        <button type="button" className="pb-3 text-sm font-medium text-[#6B6B6B] hover:text-[#111111] transition-colors">命题文章</button>
       </div>
 
       <div className="flex justify-between items-center mb-8">
@@ -416,7 +439,7 @@ export default function PublicOpinionResponse() {
         <button 
           type="button"
           onClick={() => setView('create')}
-          className="flex items-center bg-[#4A6B82] text-white px-4 py-2 rounded-lg text-sm font-bold hover:bg-[#3A5B72] transition-colors shadow-sm"
+          className="flex items-center bg-[#111111] text-white px-4 py-2 rounded-lg text-sm font-bold hover:bg-black transition-colors shadow-sm"
         >
           <Plus className="w-4 h-4 mr-2" />
           新建项目
@@ -455,19 +478,19 @@ export default function PublicOpinionResponse() {
                 knowledgeFolders: [6]
               });
             }}
-            className="bg-white p-6 rounded-xl border border-gray-200 hover:border-[#4A6B82] hover:shadow-md transition-all cursor-pointer group"
+            className="bg-white p-6 rounded-xl border border-gray-200 hover:border-[#111111] hover:shadow-md transition-all cursor-pointer group"
           >
             <div className="flex justify-between items-start mb-4">
-              <div className="p-3 bg-blue-50 rounded-lg text-[#4A6B82]">
+              <div className="p-3 bg-gray-50 rounded-lg text-[#111111]">
                 <FileText className="w-6 h-6" />
               </div>
-              <span className={`text-xs px-2 py-1 rounded-full ${project.status === 'completed' ? 'bg-green-100 text-green-700' : 'bg-gray-100 text-gray-600'}`}>
+              <span className={`text-xs px-2 py-1 rounded-full ${project.status === 'completed' ? 'bg-green-100 text-green-700' : 'bg-gray-100 text-[#6B6B6B]'}`}>
                 {project.status === 'completed' ? '已完成' : '进行中'}
               </span>
             </div>
-            <h3 className="text-lg font-bold text-[#111111] mb-2 group-hover:text-[#4A6B82] transition-colors">{project.name}</h3>
-            <p className="text-sm text-gray-500 mb-4">创建时间：{project.createdAt}</p>
-            <div className="flex items-center text-sm text-gray-500">
+            <h3 className="text-lg font-bold text-[#111111] mb-2 group-hover:text-[#3182CE] transition-colors">{project.name}</h3>
+            <p className="text-sm text-[#6B6B6B] mb-4">创建时间：{project.createdAt}</p>
+            <div className="flex items-center text-sm text-[#6B6B6B]">
               <FileText className="w-4 h-4 mr-1" />
               {project.articles.length} 篇文章
             </div>
@@ -489,7 +512,7 @@ export default function PublicOpinionResponse() {
               value={newProjectName}
               onChange={(e) => setNewProjectName(e.target.value)}
               placeholder="例如：新版本掉率问题应对"
-              className="w-full px-4 py-2 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#4A6B82] focus:border-transparent"
+              className="w-full px-4 py-2 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#111111] focus:border-transparent"
               autoFocus
             />
           </div>
@@ -498,7 +521,7 @@ export default function PublicOpinionResponse() {
           <button 
             type="button"
             onClick={() => setView('list')}
-            className="px-4 py-2 text-sm font-bold text-gray-600 hover:bg-gray-100 rounded-lg transition-colors"
+            className="px-4 py-2 text-sm font-bold text-[#6B6B6B] hover:bg-gray-100 rounded-lg transition-colors"
           >
             取消
           </button>
@@ -506,7 +529,7 @@ export default function PublicOpinionResponse() {
             type="button"
             onClick={handleCreateProject}
             disabled={!newProjectName.trim()}
-            className="px-6 py-2 bg-[#4A6B82] text-white text-sm font-bold rounded-lg hover:bg-[#3A5B72] transition-colors shadow-sm disabled:opacity-50 disabled:cursor-not-allowed"
+            className="px-6 py-2 bg-[#111111] text-white text-sm font-bold rounded-lg hover:bg-black transition-colors shadow-sm disabled:opacity-50 disabled:cursor-not-allowed"
           >
             创建项目
           </button>
@@ -521,12 +544,12 @@ export default function PublicOpinionResponse() {
       <div className="w-1/2 border-r border-gray-200 bg-white flex flex-col h-full overflow-y-auto">
         <div className="p-6 border-b border-gray-200 flex items-center justify-between sticky top-0 bg-white z-10">
           <div className="flex items-center">
-            <button type="button" onClick={() => setView('list')} className="mr-4 text-gray-400 hover:text-[#111111]">
+            <button type="button" onClick={() => setView('list')} className="mr-4 text-[#6B6B6B] hover:text-[#111111]">
               <ChevronRight className="w-5 h-5 rotate-180" />
             </button>
             <div>
               <h2 className="text-lg font-bold text-[#111111]">{currentProject?.name}</h2>
-              <span className="text-xs text-gray-500">观点回应项目</span>
+              <span className="text-xs text-[#6B6B6B]">观点回应项目</span>
             </div>
           </div>
         </div>
@@ -535,7 +558,7 @@ export default function PublicOpinionResponse() {
           {/* Step 1: Upload */}
           <section>
             <div className="flex items-center mb-4">
-              <div className="w-6 h-6 rounded-full bg-[#4A6B82] text-white flex items-center justify-center text-xs font-bold mr-3">1</div>
+              <div className="w-6 h-6 rounded-full bg-[#111111] text-white flex items-center justify-center text-xs font-bold mr-3">1</div>
               <h3 className="text-base font-bold text-[#111111]">上传文档</h3>
             </div>
             
@@ -544,7 +567,7 @@ export default function PublicOpinionResponse() {
                 onClick={() => fileInputRef.current?.click()}
                 onDragOver={handleDragOver}
                 onDrop={handleDrop}
-                className="border-2 border-dashed border-gray-300 rounded-xl p-8 text-center cursor-pointer hover:border-[#4A6B82] hover:bg-blue-50/30 transition-all group"
+                className="border-2 border-dashed border-gray-300 rounded-xl p-8 text-center cursor-pointer hover:border-[#111111] hover:bg-gray-50 transition-all group"
               >
                 <input 
                   type="file" 
@@ -554,18 +577,18 @@ export default function PublicOpinionResponse() {
                   onChange={handleFileUpload}
                 />
                 <div className="w-12 h-12 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:bg-white group-hover:shadow-sm transition-all">
-                  <Upload className="w-6 h-6 text-gray-400 group-hover:text-[#4A6B82]" />
+                  <Upload className="w-6 h-6 text-[#6B6B6B] group-hover:text-[#111111]" />
                 </div>
                 <p className="text-sm font-bold text-gray-700 mb-1">点击上传文档</p>
-                <p className="text-xs text-gray-400">支持 Word, Excel, PDF, TXT 格式</p>
+                <p className="text-xs text-[#6B6B6B]">支持 Word, Excel, PDF, TXT 格式</p>
               </div>
             ) : (
               <div className="bg-gray-50 rounded-xl p-4 border border-gray-200 flex items-center justify-between">
                 <div className="flex items-center">
-                  <FileText className="w-5 h-5 text-[#4A6B82] mr-3" />
+                  <FileText className="w-5 h-5 text-[#111111] mr-3" />
                   <div>
                     <p className="text-sm font-bold text-[#111111]">观点提炼报告.docx</p>
-                    <p className="text-xs text-gray-500">
+                    <p className="text-xs text-[#6B6B6B]">
                       {uploadStatus === 'uploading' && '上传中...'}
                       {uploadStatus === 'analyzing' && 'AI 分析中...'}
                       {uploadStatus === 'done' && '分析完成'}
@@ -573,7 +596,7 @@ export default function PublicOpinionResponse() {
                   </div>
                 </div>
                 {uploadStatus === 'uploading' || uploadStatus === 'analyzing' ? (
-                  <Loader2 className="w-5 h-5 text-[#4A6B82] animate-spin" />
+                  <Loader2 className="w-5 h-5 text-[#111111] animate-spin" />
                 ) : (
                   <CheckCircle2 className="w-5 h-5 text-green-500" />
                 )}
@@ -585,14 +608,14 @@ export default function PublicOpinionResponse() {
           {analysisResult && (
             <section className="animate-in slide-in-from-bottom-4 fade-in duration-500">
               <div className="flex items-center mb-4">
-                <div className="w-6 h-6 rounded-full bg-[#4A6B82] text-white flex items-center justify-center text-xs font-bold mr-3">2</div>
+                <div className="w-6 h-6 rounded-full bg-[#111111] text-white flex items-center justify-center text-xs font-bold mr-3">2</div>
                 <h3 className="text-base font-bold text-[#111111]">AI 内容分析</h3>
               </div>
               
               <div className="bg-gray-50 rounded-xl p-6 border border-gray-200 space-y-4">
                 <div>
                   <h4 className="text-sm font-bold text-gray-700 mb-2">内容归纳总结</h4>
-                  <p className="text-sm text-gray-600 leading-relaxed bg-white p-3 rounded-lg border border-gray-100">
+                  <p className="text-sm text-[#6B6B6B] leading-relaxed bg-white p-3 rounded-lg border border-gray-100">
                     {analysisResult.summary}
                   </p>
                 </div>
@@ -601,10 +624,10 @@ export default function PublicOpinionResponse() {
                   <h4 className="text-sm font-bold text-gray-700 mb-2">提炼观点 (选择以生成文章)</h4>
                   <div className="space-y-2">
                     {analysisResult.viewpoints?.map((point, idx) => (
-                      <label key={idx} className="flex items-start p-3 bg-white rounded-lg border border-gray-100 cursor-pointer hover:border-[#4A6B82] transition-colors">
+                      <label key={idx} className="flex items-start p-3 bg-white rounded-lg border border-gray-100 cursor-pointer hover:border-[#111111] transition-colors">
                         <input 
                           type="checkbox" 
-                          className="mt-1 mr-3 rounded text-[#4A6B82] focus:ring-[#4A6B82]"
+                          className="mt-1 mr-3 rounded text-[#3182CE] focus:ring-[#3182CE]"
                           checked={selectedViewpoints.includes(point)}
                           onChange={(e) => {
                             if (e.target.checked) {
@@ -626,7 +649,7 @@ export default function PublicOpinionResponse() {
                   <button 
                     type="button"
                     onClick={handleSaveViewpoints}
-                    className={`text-xs font-bold flex items-center transition-colors ${isSaved ? 'text-green-600' : 'text-[#4A6B82] hover:text-[#3A5B72]'}`}
+                    className={`text-xs font-bold flex items-center transition-colors ${isSaved ? 'text-green-600' : 'text-[#3182CE] hover:text-[#2B6CB0]'}`}
                   >
                     {isSaved ? <CheckCircle2 className="w-3 h-3 mr-1" /> : <Save className="w-3 h-3 mr-1" />} 
                     {isSaved ? '已保存' : '保存观点'}
@@ -640,16 +663,16 @@ export default function PublicOpinionResponse() {
           {analysisResult && (
             <section className="animate-in slide-in-from-bottom-4 fade-in duration-500 delay-100">
               <div className="flex items-center mb-4">
-                <div className="w-6 h-6 rounded-full bg-[#4A6B82] text-white flex items-center justify-center text-xs font-bold mr-3">3</div>
+                <div className="w-6 h-6 rounded-full bg-[#111111] text-white flex items-center justify-center text-xs font-bold mr-3">3</div>
                 <h3 className="text-base font-bold text-[#111111]">文章生成配置</h3>
               </div>
 
               <div className="space-y-6">
                 <div className="grid grid-cols-2 gap-4">
                   <div>
-                    <label className="block text-xs font-bold text-gray-500 mb-1.5">游戏品牌</label>
+                    <label className="block text-xs font-bold text-[#6B6B6B] mb-1.5">游戏品牌</label>
                     <select 
-                      className="w-full text-sm border border-gray-200 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-[#4A6B82]"
+                      className="w-full text-sm border border-gray-200 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-[#111111]"
                       value={config.brand}
                       onChange={(e) => setConfig({...config, brand: e.target.value})}
                     >
@@ -657,9 +680,9 @@ export default function PublicOpinionResponse() {
                     </select>
                   </div>
                   <div>
-                    <label className="block text-xs font-bold text-gray-500 mb-1.5">文章长度</label>
+                    <label className="block text-xs font-bold text-[#6B6B6B] mb-1.5">文章长度</label>
                     <select 
-                      className="w-full text-sm border border-gray-200 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-[#4A6B82]"
+                      className="w-full text-sm border border-gray-200 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-[#111111]"
                       value={config.length}
                       onChange={(e) => setConfig({...config, length: e.target.value as any})}
                     >
@@ -672,12 +695,12 @@ export default function PublicOpinionResponse() {
 
                 <div className="grid grid-cols-2 gap-4">
                   <div>
-                    <label className="block text-xs font-bold text-gray-500 mb-1.5">生成篇数 (1-10)</label>
+                    <label className="block text-xs font-bold text-[#6B6B6B] mb-1.5">生成篇数 (1-10)</label>
                     <input 
                       type="number" 
                       min="1" 
                       max="10"
-                      className="w-full text-sm border border-gray-200 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-[#4A6B82]"
+                      className="w-full text-sm border border-gray-200 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-[#111111]"
                       value={config.count}
                       onChange={(e) => setConfig({...config, count: parseInt(e.target.value) || 1})}
                     />
@@ -686,8 +709,8 @@ export default function PublicOpinionResponse() {
 
                 <div>
                   <div className="flex justify-between items-center mb-1.5">
-                    <label className="block text-xs font-bold text-gray-500">参考品牌知识库</label>
-                    <span className="text-xs text-[#4A6B82] hover:underline flex items-center cursor-pointer">
+                    <label className="block text-xs font-bold text-[#6B6B6B]">参考品牌知识库</label>
+                    <span className="text-xs text-[#3182CE] hover:underline flex items-center cursor-pointer">
                       管理知识库 <ChevronRight className="w-3 h-3" />
                     </span>
                   </div>
@@ -704,8 +727,8 @@ export default function PublicOpinionResponse() {
                         }}
                         className={`px-3 py-1 text-xs rounded-full border transition-colors ${
                           config.knowledgeFolders.includes(folder.id)
-                            ? 'bg-[#4A6B82] text-white border-[#4A6B82]'
-                            : 'bg-white text-gray-600 border-gray-200 hover:border-[#4A6B82]'
+                            ? 'bg-[#111111] text-white border-[#111111]'
+                            : 'bg-white text-[#6B6B6B] border-gray-200 hover:border-[#111111]'
                         }`}
                       >
                         {folder.name}
@@ -718,7 +741,7 @@ export default function PublicOpinionResponse() {
                   type="button"
                   onClick={handleGenerate}
                   disabled={isGenerating || selectedViewpoints.length === 0}
-                  className="w-full py-3 bg-[#4A6B82] text-white font-bold rounded-xl hover:bg-[#3A5B72] transition-colors shadow-lg shadow-blue-900/10 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center"
+                  className="w-full py-3 bg-[#111111] text-white font-bold rounded-xl hover:bg-black transition-colors shadow-lg shadow-gray-900/10 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center"
                 >
                   {isGenerating ? (
                     <>
@@ -743,11 +766,11 @@ export default function PublicOpinionResponse() {
         <div className="max-w-2xl mx-auto">
           <div className="flex items-center justify-between mb-6">
             <h2 className="text-lg font-bold text-[#111111]">生成结果</h2>
-            <span className="text-sm text-gray-500">共 {currentProject?.articles.length || 0} 篇文章</span>
+            <span className="text-sm text-[#6B6B6B]">共 {currentProject?.articles.length || 0} 篇文章</span>
           </div>
 
           {currentProject?.articles.length === 0 ? (
-            <div className="flex flex-col items-center justify-center h-96 text-gray-400 border-2 border-dashed border-gray-200 rounded-xl">
+            <div className="flex flex-col items-center justify-center h-96 text-[#6B6B6B] border-2 border-dashed border-gray-200 rounded-xl">
               <FileText className="w-16 h-16 mb-4 opacity-20" />
               <p>暂无生成文章，请在左侧配置并开始生成</p>
             </div>
@@ -761,14 +784,14 @@ export default function PublicOpinionResponse() {
                       <div className="flex space-x-2">
                         <button 
                           onClick={() => setEditingArticle(article)}
-                          className="p-1.5 text-gray-400 hover:text-[#4A6B82] hover:bg-blue-50 rounded-lg transition-colors"
+                          className="p-1.5 text-[#6B6B6B] hover:text-[#111111] hover:bg-gray-100 rounded-lg transition-colors"
                           title="编辑/对话"
                         >
                           <Edit3 className="w-4 h-4" />
                         </button>
                         <button 
                           onClick={() => handleDeleteArticle(article.id)}
-                          className="p-1.5 text-gray-400 hover:text-red-500 hover:bg-red-50 rounded-lg transition-colors"
+                          className="p-1.5 text-[#6B6B6B] hover:text-red-500 hover:bg-red-50 rounded-lg transition-colors"
                           title="删除"
                         >
                           <Trash2 className="w-4 h-4" />
@@ -776,13 +799,13 @@ export default function PublicOpinionResponse() {
                       </div>
                     </div>
                     
-                    <div className="text-sm text-gray-600 mb-4 whitespace-pre-wrap line-clamp-4">
+                    <div className="text-sm text-[#6B6B6B] mb-4 whitespace-pre-wrap line-clamp-4">
                       {article.content}
                     </div>
                     
                     <div className="flex flex-wrap gap-2 mb-4">
                       {article.tags.map(tag => (
-                        <span key={tag} className="text-xs text-[#4A6B82] bg-blue-50 px-2 py-1 rounded">
+                        <span key={tag} className="text-xs text-[#111111] bg-gray-100 px-2 py-1 rounded">
                           {tag}
                         </span>
                       ))}
@@ -791,7 +814,7 @@ export default function PublicOpinionResponse() {
                     <div className="flex items-center justify-between pt-4 border-t border-gray-100">
                       <div className="flex space-x-2">
                         <div className="relative group/copy">
-                          <button className="text-xs font-bold text-gray-500 hover:text-[#111111] flex items-center px-2 py-1 hover:bg-gray-100 rounded transition-colors">
+                          <button className="text-xs font-bold text-[#6B6B6B] hover:text-[#111111] flex items-center px-2 py-1 hover:bg-gray-100 rounded transition-colors">
                             <Copy className="w-3 h-3 mr-1" /> 复制
                           </button>
                           <div className="absolute bottom-full left-0 mb-2 hidden group-hover/copy:flex flex-col bg-white shadow-lg rounded-lg border border-gray-100 py-1 min-w-[100px] z-10">
@@ -815,7 +838,7 @@ export default function PublicOpinionResponse() {
                             </button>
                           </div>
                         </div>
-                        <button className="text-xs font-bold text-gray-500 hover:text-[#111111] flex items-center px-2 py-1 hover:bg-gray-100 rounded transition-colors">
+                        <button className="text-xs font-bold text-[#6B6B6B] hover:text-[#111111] flex items-center px-2 py-1 hover:bg-gray-100 rounded transition-colors">
                           <Download className="w-3 h-3 mr-1" /> 下载
                         </button>
                       </div>
@@ -854,7 +877,7 @@ export default function PublicOpinionResponse() {
               <h3 className="text-xl font-bold text-[#111111]">文章编辑与优化</h3>
               <button 
                 onClick={() => setEditingArticle(null)}
-                className="text-gray-400 hover:text-gray-600 transition-colors"
+                className="text-[#6B6B6B] hover:text-[#6B6B6B] transition-colors"
               >
                 <X className="w-6 h-6" />
               </button>
@@ -876,7 +899,7 @@ export default function PublicOpinionResponse() {
                   />
                   <div className="mt-6 pt-6 border-t border-gray-100">
                     <input 
-                      className="w-full text-sm text-[#4A6B82] border-none focus:ring-0 p-0"
+                      className="w-full text-sm text-[#111111] border-none focus:ring-0 p-0"
                       value={editingArticle.tags.join(' ')}
                       onChange={(e) => setEditingArticle({...editingArticle, tags: e.target.value.split(' ')})}
                     />
@@ -888,7 +911,7 @@ export default function PublicOpinionResponse() {
               <div className="w-1/2 flex flex-col bg-white">
                 <div className="flex-1 p-6 overflow-y-auto space-y-4">
                   <div className="flex items-start space-x-3">
-                    <div className="w-8 h-8 rounded-full bg-[#4A6B82] flex items-center justify-center text-white">
+                    <div className="w-8 h-8 rounded-full bg-[#111111] flex items-center justify-center text-white">
                       <MessageSquare className="w-4 h-4" />
                     </div>
                     <div className="bg-gray-100 p-3 rounded-2xl rounded-tl-none text-sm text-gray-700 max-w-[80%]">
@@ -905,7 +928,7 @@ export default function PublicOpinionResponse() {
                       value={chatInput}
                       onChange={(e) => setChatInput(e.target.value)}
                       placeholder="例如：把语气改得更活泼一点..."
-                      className="w-full pl-4 pr-12 py-3 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#4A6B82] focus:border-transparent"
+                      className="w-full pl-4 pr-12 py-3 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#111111] focus:border-transparent"
                       onKeyDown={(e) => {
                         if (e.key === 'Enter' && chatInput.trim()) {
                           // Mock send
@@ -920,7 +943,7 @@ export default function PublicOpinionResponse() {
                     />
                     <button 
                       type="button"
-                      className="absolute right-2 top-2 p-1.5 bg-[#4A6B82] text-white rounded-lg hover:bg-[#3A5B72] transition-colors"
+                      className="absolute right-2 top-2 p-1.5 bg-[#111111] text-white rounded-lg hover:bg-black transition-colors"
                     >
                       <Send className="w-4 h-4" />
                     </button>
@@ -933,7 +956,7 @@ export default function PublicOpinionResponse() {
               <button 
                 type="button"
                 onClick={() => setEditingArticle(null)}
-                className="px-4 py-2 text-sm font-bold text-gray-600 hover:bg-gray-100 rounded-lg transition-colors"
+                className="px-4 py-2 text-sm font-bold text-[#6B6B6B] hover:bg-gray-100 rounded-lg transition-colors"
               >
                 取消
               </button>

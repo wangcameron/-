@@ -36,7 +36,7 @@ const SOV_DATA = [
   { name: '竞品C', value: 12 },
 ];
 
-const COLORS = ['#4A6B82', '#639FAB', '#82A7A6', '#B4C5C6'];
+const COLORS = ['#111111', '#639FAB', '#82A7A6', '#B4C5C6'];
 
 export default function CompetitorComparison() {
   const [activeTab, setActiveTab] = useState('按声量对比');

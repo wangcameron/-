@@ -144,7 +144,7 @@ export default function ContentInfluencers() {
             <input 
               type="text" 
               placeholder="搜索达人/内容..." 
-              className="pl-9 pr-4 py-2 bg-white border border-gray-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-[#4A6B82]/20 focus:border-[#4A6B82]"
+              className="pl-9 pr-4 py-2 bg-white border border-gray-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-[#111111]/20 focus:border-[#111111]"
             />
           </div>
           <button type="button" className="p-2 bg-white border border-gray-200 rounded-lg text-gray-600 hover:bg-gray-50">
@@ -166,7 +166,7 @@ export default function ContentInfluencers() {
                 >
                   <Bookmark 
                     className={`w-5 h-5 transition-colors ${
-                      savedInfluencers.includes(inf.id) ? 'fill-[#4A6B82] text-[#4A6B82]' : 'text-gray-400 group-hover:text-gray-600'
+                      savedInfluencers.includes(inf.id) ? 'fill-[#111111] text-[#111111]' : 'text-gray-400 group-hover:text-gray-600'
                     }`} 
                   />
                 </button>
@@ -212,7 +212,7 @@ export default function ContentInfluencers() {
                     {inf.tags.map((tag, idx) => (
                       <span 
                         key={idx} 
-                        className="px-2.5 py-1 bg-[#4A6B82]/10 text-[#4A6B82] border border-[#4A6B82]/20 rounded-md text-xs font-medium"
+                        className="px-2.5 py-1 bg-gray-100 text-[#111111] border border-gray-200 rounded-md text-xs font-medium"
                       >
                         {tag}
                       </span>
