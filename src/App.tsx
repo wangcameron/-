@@ -19,9 +19,17 @@ export default function App() {
     const checkKey = async () => {
       // @ts-ignore
       if (window.aistudio && window.aistudio.hasSelectedApiKey) {
-        // @ts-ignore
-        const selected = await window.aistudio.hasSelectedApiKey();
-        setHasKey(selected);
+        try {
+          // Add a 2-second timeout to prevent hanging on the Loading screen
+          const selected = await Promise.race([
+            // @ts-ignore
+            window.aistudio.hasSelectedApiKey(),
+            new Promise<boolean>((resolve) => setTimeout(() => resolve(true), 2000))
+          ]);
+          setHasKey(selected);
+        } catch (e) {
+          setHasKey(true);
+        }
       } else {
         setHasKey(true); // Fallback if not in AI Studio
       }
@@ -45,8 +53,8 @@ export default function App() {
   if (!hasKey) {
     return (
       <div className="flex h-screen w-full items-center justify-center bg-[#F8F9FA]">
-        <div className="bg-white p-8 rounded-2xl shadow-lg max-w-md text-center">
-          <h1 className="text-2xl font-bold mb-4">需要配置 API Key</h1>
+        <div className="bg-white p-8 rounded-[24px] shadow-lg max-w-md text-center">
+          <h1 className="text-[24px] font-medium mb-4">需要配置 API Key</h1>
           <p className="text-[#6B6B6B] mb-6 text-[14px] leading-[1.6]">
             为了使用高级 AI 模型（如高质量视频生成、长文本分析等），请选择您的 Google Cloud API Key。
             <br/><br/>
@@ -56,7 +64,7 @@ export default function App() {
           </p>
           <button
             onClick={handleSelectKey}
-            className="bg-[#111111] text-white px-6 py-3 rounded-xl font-bold hover:bg-black transition-colors shadow-sm"
+            className="bg-[#242424] text-white px-6 py-3 rounded-[16px] font-medium hover:bg-black transition-colors shadow-sm"
           >
             选择 API Key
           </button>
@@ -88,10 +96,10 @@ export default function App() {
         <div className={activeNav === '数据分析' ? 'h-full' : 'hidden'}>
           <SmartDailyReport initialDate={reportDate} onNavigateToWriter={handleNavigateToWriter} />
         </div>
-        <div className={activeNav === '智能创作' ? 'h-full overflow-y-auto p-6' : 'hidden'}>
+        <div className={activeNav === '智能创作' ? 'h-full' : 'hidden'}>
           <XiaohongshuWriter initialParams={writerParams} />
         </div>
-        <div className={activeNav === '资产记忆' ? 'h-full overflow-y-auto p-6' : 'hidden'}>
+        <div className={activeNav === '资产记忆' ? 'h-full' : 'hidden'}>
           <BrandKnowledgeBase />
         </div>
         {!pages.includes(activeNav) && (
@@ -104,7 +112,7 @@ export default function App() {
   };
 
   return (
-    <div className="flex h-screen w-full bg-white text-[#111111] font-sans overflow-hidden">
+    <div className="flex h-screen w-full bg-white text-[#242424] font-sans overflow-hidden">
       <Sidebar activeNav={activeNav} setActiveNav={setActiveNav} />
       <div className="flex-1 flex flex-col overflow-hidden">
         <main className="flex-1 overflow-hidden relative">

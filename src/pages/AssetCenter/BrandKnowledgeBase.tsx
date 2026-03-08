@@ -209,9 +209,9 @@ export default function BrandKnowledgeBase() {
     const approvedList = activeCategory === 'slang' ? filteredList.filter((item: any) => item.status === 'approved') : filteredList;
 
     return (
-      <div className="flex-1 overflow-auto bg-white rounded-xl border border-[#E5E5E5]">
-        <table className="w-full text-sm text-left">
-          <thead className="text-xs text-[#6B6B6B] bg-[#F8F9FA] sticky top-0 z-10 shadow-sm">
+      <div className="flex-1 overflow-auto bg-white rounded-[16px] border border-[#E5E5E5]">
+        <table className="w-full text-[14px] text-left">
+          <thead className="text-[12px] text-[#6B6B6B] bg-[#F8F9FA] sticky top-0 z-10 shadow-sm">
             <tr>
               <th className="px-6 py-4 font-medium w-1/4">关键词</th>
               <th className="px-6 py-4 font-medium w-1/2">简述</th>
@@ -222,7 +222,7 @@ export default function BrandKnowledgeBase() {
             {activeCategory === 'slang' && pendingList.length > 0 && (
               <>
                 <tr className="bg-yellow-50/50">
-                  <td colSpan={3} className="px-6 py-2 text-xs font-bold text-yellow-700">
+                  <td colSpan={3} className="px-6 py-2 text-[12px] font-medium text-yellow-700">
                     <div className="flex items-center">
                       <Wand2 className="w-4 h-4 mr-1.5" />
                       系统自动发现待审核词条 ({pendingList.length})
@@ -231,14 +231,14 @@ export default function BrandKnowledgeBase() {
                 </tr>
                 {pendingList.map((item: any) => (
                   <tr key={item.id} onClick={() => openEditPanel(item)} className="bg-yellow-50/30 hover:bg-yellow-50/80 transition-colors border-l-2 border-yellow-400 cursor-pointer">
-                    <td className="px-6 py-4 font-bold text-[#111111] flex items-center">
+                    <td className="px-6 py-4 font-medium text-[#242424] flex items-center">
                       <span className="w-1.5 h-1.5 rounded-full bg-red-500 mr-2 animate-pulse"></span>
                       {item.title}
                     </td>
                     <td className="px-6 py-4 text-[#6B6B6B] truncate max-w-md">{item.content}</td>
                     <td className="px-6 py-4 text-right">
                       <div className="flex items-center justify-end space-x-2">
-                        <button onClick={(e) => handleApproveSlang(item.id, e)} className="px-2 py-1 bg-green-100 text-green-700 text-xs font-medium rounded hover:bg-green-200 transition-colors">
+                        <button onClick={(e) => handleApproveSlang(item.id, e)} className="px-2 py-1 bg-green-100 text-green-700 text-[12px] font-medium rounded hover:bg-green-200 transition-colors">
                           确认入库
                         </button>
                         <button onClick={(e) => confirmDelete(item.id, e)} className="p-1.5 text-[#6B6B6B] hover:text-red-500 hover:bg-red-50 rounded transition-colors">
@@ -254,7 +254,7 @@ export default function BrandKnowledgeBase() {
 
             {approvedList.map((item: any) => (
               <tr key={item.id} onClick={() => openEditPanel(item)} className="hover:bg-[#F8F9FA]/80 transition-colors cursor-pointer group">
-                <td className="px-6 py-4 font-medium text-[#111111]">{item.title}</td>
+                <td className="px-6 py-4 font-medium text-[#242424]">{item.title}</td>
                 <td className="px-6 py-4 text-[#6B6B6B] truncate max-w-md">{item.content}</td>
                 <td className="px-6 py-4 text-right">
                   <div className="flex items-center justify-end space-x-2 opacity-0 group-hover:opacity-100 transition-opacity">
@@ -295,16 +295,16 @@ export default function BrandKnowledgeBase() {
             <div 
               key={item.id} 
               onClick={() => openEditPanel(item)}
-              className={`bg-white border ${item.isExpired ? 'border-red-200 shadow-[0_0_0_1px_rgba(239,68,68,0.2)]' : 'border-[#E5E5E5]'} rounded-xl p-5 shadow-sm hover:shadow-md transition-all cursor-pointer relative group flex flex-col h-48`}
+              className={`bg-white border ${item.isExpired ? 'border-red-200 shadow-[0_0_0_1px_rgba(239,68,68,0.2)]' : 'border-[#E5E5E5]'} rounded-[16px] p-5 shadow-sm hover:shadow-md transition-all cursor-pointer relative group flex flex-col h-48`}
             >
               {item.isExpired && (
-                <div className="absolute top-0 right-0 bg-red-500 text-white text-[10px] font-bold px-2 py-1 rounded-bl-lg rounded-tr-xl flex items-center">
+                <div className="absolute top-0 right-0 bg-red-500 text-white text-[10px] font-medium px-2 py-1 rounded-bl-lg rounded-tr-xl flex items-center">
                   <AlertCircle className="w-3 h-3 mr-1" /> 已过期
                 </div>
               )}
               
               <div className="flex justify-between items-start mb-3">
-                <h3 className="text-sm font-bold text-[#111111] line-clamp-1 pr-6">{item.title}</h3>
+                <h3 className="text-[14px] font-medium text-[#242424] line-clamp-1 pr-6">{item.title}</h3>
                 <button 
                   onClick={(e) => confirmDelete(item.id, e)}
                   className="absolute top-4 right-4 p-1.5 text-[#6B6B6B] hover:text-red-500 hover:bg-red-50 rounded transition-colors opacity-0 group-hover:opacity-100"
@@ -320,7 +320,7 @@ export default function BrandKnowledgeBase() {
                   </span>
                 )}
                 {item.tags?.slice(0, 2).map((tag: string, i: number) => (
-                  <span key={i} className="text-[10px] px-2 py-0.5 rounded bg-[#F8F9FA] text-[#111111] font-medium">
+                  <span key={i} className="text-[10px] px-2 py-0.5 rounded bg-[#F8F9FA] text-[#242424] font-medium">
                     {tag}
                   </span>
                 ))}
@@ -353,9 +353,9 @@ export default function BrandKnowledgeBase() {
 
     return (
       <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 backdrop-blur-sm p-4 sm:p-6 animate-in fade-in duration-200">
-        <div className="bg-white rounded-2xl shadow-2xl border border-[#E5E5E5] w-full max-w-2xl max-h-[90vh] flex flex-col overflow-hidden animate-in zoom-in-95 duration-200">
+        <div className="bg-white rounded-[24px] shadow-2xl border border-[#E5E5E5] w-full max-w-2xl max-h-[90vh] flex flex-col overflow-hidden animate-in zoom-in-95 duration-200">
           <div className="px-6 py-4 border-b border-[#E5E5E5] flex items-center justify-between bg-[#F8F9FA]/50">
-            <h3 className="text-lg font-bold text-[#111111]">
+            <h3 className="text-[18px] font-medium text-[#242424]">
               {isAdding ? '新增词条' : '编辑词条'}
             </h3>
             <button onClick={closeEditPanel} className="p-2 text-[#6B6B6B] hover:text-[#242424] hover:bg-[#E5E5E5] rounded-full transition-colors">
@@ -366,14 +366,14 @@ export default function BrandKnowledgeBase() {
           <div className="flex-1 overflow-y-auto p-6 space-y-6">
             {/* Common Fields */}
             <div>
-              <label className="block text-sm font-bold text-[#444444] mb-2">
+              <label className="block text-[14px] font-medium text-[#444444] mb-2">
                 {currentCategory?.type === 'table' ? '关键词' : '主题 / 标题'}
               </label>
               <input 
                 type="text" 
                 value={editingItem.title}
                 onChange={(e) => setEditingItem({...editingItem, title: e.target.value})}
-                className="w-full bg-white border border-[#E5E5E5] rounded-lg px-4 py-2.5 text-sm font-medium text-[#111111] focus:outline-none focus:ring-2 focus:ring-[#111111]/20 focus:border-[#111111]"
+                className="w-full bg-white border border-[#E5E5E5] rounded-[12px] px-4 py-2.5 text-[14px] font-medium text-[#242424] focus:outline-none focus:ring-2 focus:ring-[#242424]/20 focus:border-[#242424]"
                 placeholder="输入标题..."
               />
             </div>
@@ -382,22 +382,22 @@ export default function BrandKnowledgeBase() {
             {currentCategory?.type === 'card' && (
               <div className="grid grid-cols-2 gap-4">
                 <div>
-                  <label className="block text-sm font-bold text-[#444444] mb-2">时效 / 版本</label>
+                  <label className="block text-[14px] font-medium text-[#444444] mb-2">时效 / 版本</label>
                   <input 
                     type="text" 
                     value={editingItem.version}
                     onChange={(e) => setEditingItem({...editingItem, version: e.target.value})}
-                    className="w-full bg-white border border-[#E5E5E5] rounded-lg px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-[#111111]/20 focus:border-[#111111]"
+                    className="w-full bg-white border border-[#E5E5E5] rounded-[12px] px-4 py-2.5 text-[14px] focus:outline-none focus:ring-2 focus:ring-[#242424]/20 focus:border-[#242424]"
                     placeholder="如：2.0版本"
                   />
                 </div>
                 <div>
-                  <label className="block text-sm font-bold text-[#444444] mb-2">关联标签 (逗号分隔)</label>
+                  <label className="block text-[14px] font-medium text-[#444444] mb-2">关联标签 (逗号分隔)</label>
                   <input 
                     type="text" 
                     value={editingItem.tags?.join(', ') || ''}
                     onChange={(e) => setEditingItem({...editingItem, tags: e.target.value.split(',').map((t: string) => t.trim()).filter(Boolean)})}
-                    className="w-full bg-white border border-[#E5E5E5] rounded-lg px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-[#111111]/20 focus:border-[#111111]"
+                    className="w-full bg-white border border-[#E5E5E5] rounded-[12px] px-4 py-2.5 text-[14px] focus:outline-none focus:ring-2 focus:ring-[#242424]/20 focus:border-[#242424]"
                     placeholder="如：外观, 负面"
                   />
                 </div>
@@ -406,13 +406,13 @@ export default function BrandKnowledgeBase() {
 
             {/* Content Field */}
             <div>
-              <label className="block text-sm font-bold text-[#444444] mb-2">
+              <label className="block text-[14px] font-medium text-[#444444] mb-2">
                 {currentCategory?.type === 'table' ? '名词解释 / 描述' : '详细内容'}
               </label>
               <textarea 
                 value={editingItem.content}
                 onChange={(e) => setEditingItem({...editingItem, content: e.target.value})}
-                className="w-full h-48 bg-white border border-[#E5E5E5] rounded-lg px-4 py-3 text-sm text-[#444444] leading-relaxed resize-none focus:outline-none focus:ring-2 focus:ring-[#111111]/20 focus:border-[#111111]"
+                className="w-full h-48 bg-white border border-[#E5E5E5] rounded-[12px] px-4 py-3 text-[14px] text-[#444444] leading-relaxed resize-none focus:outline-none focus:ring-2 focus:ring-[#242424]/20 focus:border-[#242424]"
                 placeholder="输入详细内容..."
               />
             </div>
@@ -420,12 +420,12 @@ export default function BrandKnowledgeBase() {
             {/* Table Specific Fields */}
             {currentCategory?.type === 'table' && (
               <div>
-                <label className="block text-sm font-bold text-[#444444] mb-2">备注 / 建议</label>
+                <label className="block text-[14px] font-medium text-[#444444] mb-2">备注 / 建议</label>
                 <input 
                   type="text" 
                   value={editingItem.notes}
                   onChange={(e) => setEditingItem({...editingItem, notes: e.target.value})}
-                  className="w-full bg-white border border-[#E5E5E5] rounded-lg px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-[#111111]/20 focus:border-[#111111]"
+                  className="w-full bg-white border border-[#E5E5E5] rounded-[12px] px-4 py-2.5 text-[14px] focus:outline-none focus:ring-2 focus:ring-[#242424]/20 focus:border-[#242424]"
                   placeholder="输入备注..."
                 />
               </div>
@@ -433,27 +433,27 @@ export default function BrandKnowledgeBase() {
 
             {/* Prompt Engineering Controls */}
             {activeCategory === 'slang' && (
-              <div className="bg-[#F8F9FA] border border-[#E5E5E5] rounded-xl p-4">
+              <div className="bg-[#F8F9FA] border border-[#E5E5E5] rounded-[16px] p-4">
                 <div className="flex items-center justify-between">
                   <div>
-                    <h4 className="text-sm font-bold text-[#111111] mb-1">允许 AI 主动使用</h4>
+                    <h4 className="text-[14px] font-medium text-[#242424] mb-1">允许 AI 主动使用</h4>
                     <p className="text-[12px] text-[#6B6B6B]">开启后，AI 在生成日常文案时会主动尝试使用该黑话词汇。</p>
                   </div>
                   <label className="relative inline-flex items-center cursor-pointer">
                     <input type="checkbox" className="sr-only peer" checked={editingItem.allowAIUse} onChange={(e) => setEditingItem({...editingItem, allowAIUse: e.target.checked})} />
-                    <div className="w-11 h-6 bg-[#E5E5E5] peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-[#E5E5E5] after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-[#111111]"></div>
+                    <div className="w-11 h-6 bg-[#E5E5E5] peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-[#E5E5E5] after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-[#242424]"></div>
                   </label>
                 </div>
               </div>
             )}
 
             {activeCategory === 'sensitive' && (
-              <div className="bg-orange-50/50 border border-orange-100 rounded-xl p-4">
-                <h4 className="text-sm font-bold text-[#111111] mb-3">AI 控制指令</h4>
+              <div className="bg-orange-50/50 border border-orange-100 rounded-[16px] p-4">
+                <h4 className="text-[14px] font-medium text-[#242424] mb-3">AI 控制指令</h4>
                 <select 
                   value={editingItem.action} 
                   onChange={(e) => setEditingItem({...editingItem, action: e.target.value})}
-                  className="w-full bg-white border border-[#E5E5E5] rounded-lg px-4 py-2.5 text-sm font-medium focus:outline-none focus:ring-2 focus:ring-[#111111]/20 focus:border-[#111111]"
+                  className="w-full bg-white border border-[#E5E5E5] rounded-[12px] px-4 py-2.5 text-[14px] font-medium focus:outline-none focus:ring-2 focus:ring-[#242424]/20 focus:border-[#242424]"
                 >
                   <option value="block">绝对阻断 (禁止生成任何相关内容)</option>
                   <option value="avoid">最高优避坑 (尽量绕行，不主动提及)</option>
@@ -462,11 +462,11 @@ export default function BrandKnowledgeBase() {
             )}
 
             {currentCategory?.type === 'card' && (
-              <div className="bg-red-50/50 border border-red-100 rounded-xl p-4">
+              <div className="bg-red-50/50 border border-red-100 rounded-[16px] p-4">
                 <div className="flex items-center justify-between">
                   <div>
-                    <h4 className="text-sm font-bold text-red-800 mb-1">标记为已过期</h4>
-                    <p className="text-xs text-red-600/80">过期后，AI 将不再使用此设定的内容生成新文案。</p>
+                    <h4 className="text-[14px] font-medium text-red-800 mb-1">标记为已过期</h4>
+                    <p className="text-[12px] text-red-600/80">过期后，AI 将不再使用此设定的内容生成新文案。</p>
                   </div>
                   <label className="relative inline-flex items-center cursor-pointer">
                     <input type="checkbox" className="sr-only peer" checked={editingItem.isExpired} onChange={(e) => setEditingItem({...editingItem, isExpired: e.target.checked})} />
@@ -481,7 +481,7 @@ export default function BrandKnowledgeBase() {
             {!isAdding ? (
               <button 
                 onClick={() => confirmDelete(editingItem.id)}
-                className="px-4 py-2 text-sm font-medium text-red-600 hover:bg-red-50 rounded-lg transition-colors"
+                className="px-4 py-2 text-[14px] font-medium text-red-600 hover:bg-red-50 rounded-[12px] transition-colors"
               >
                 删除词条
               </button>
@@ -489,13 +489,13 @@ export default function BrandKnowledgeBase() {
             <div className="flex space-x-3">
               <button 
                 onClick={closeEditPanel}
-                className="px-6 py-2 text-sm font-medium text-[#444444] bg-white border border-[#E5E5E5] rounded-lg hover:bg-[#F8F9FA] transition-colors"
+                className="px-6 py-2 text-[14px] font-medium text-[#444444] bg-white border border-[#E5E5E5] rounded-[12px] hover:bg-[#F8F9FA] transition-colors"
               >
                 取消
               </button>
               <button 
                 onClick={() => handleSaveItem(editingItem)}
-                className="px-6 py-2 text-sm font-medium text-white bg-[#242424] rounded-lg hover:bg-[#111111] transition-colors shadow-sm"
+                className="px-6 py-2 text-[14px] font-medium text-white bg-[#242424] rounded-[12px] hover:bg-[#242424] transition-colors shadow-sm"
               >
                 保存
               </button>
@@ -507,28 +507,27 @@ export default function BrandKnowledgeBase() {
   };
 
   return (
-    <div className="w-full px-6 lg:px-10 mx-auto space-y-6 pb-12 h-full flex flex-col relative overflow-hidden">
-      <div className="flex items-center justify-between mb-2">
+    <div className="w-full h-full flex flex-col relative overflow-hidden bg-[#FBFBFA]">
+      <div className="px-6 lg:px-10 pt-8 pb-4 flex items-center justify-between shrink-0">
         <div>
-          <h1 className="text-2xl font-bold text-[#111111]">品牌知识库</h1>
-          <p className="text-[12px] text-[#6B6B6B] mt-1">结构化管理品牌资产，为 AI 提供精准的上下文参考</p>
+          <h1 className="text-[24px] font-medium text-[#242424]">品牌知识库</h1>
         </div>
         <div className="flex items-center space-x-3">
           <button 
             onClick={() => setShowImportModal(true)}
-            className="flex items-center px-4 py-2 bg-white border border-[#E5E5E5] text-[#111111] rounded-lg text-sm font-bold hover:bg-[#F8F9FA] transition-colors shadow-sm"
+            className="flex items-center px-4 py-2 bg-white border border-[#E5E5E5] text-[#242424] rounded-[12px] text-[14px] font-medium hover:bg-[#F8F9FA] transition-colors shadow-sm"
           >
-            <Wand2 className="w-4 h-4 mr-2 text-[#111111]" />
+            <Wand2 className="w-4 h-4 mr-2 text-[#242424]" />
             AI 辅助录入
           </button>
         </div>
       </div>
 
-      <div className="flex-1 flex flex-col lg:flex-row gap-6 min-h-0 relative">
+      <div className="px-6 lg:px-10 pb-8 flex-1 flex flex-col lg:flex-row gap-6 min-h-0 relative">
         {/* Left: Category List */}
-        <div className="w-full lg:w-64 bg-white rounded-xl shadow-sm border border-[#E5E5E5] p-4 flex flex-col flex-shrink-0 z-10">
+        <div className="w-full lg:w-64 bg-white rounded-[16px] shadow-sm border border-[#E5E5E5] p-4 flex flex-col flex-shrink-0 z-10">
           <div className="flex items-center justify-between mb-4 px-2">
-            <h3 className="text-sm font-bold text-[#111111]">知识库分类</h3>
+            <h3 className="text-[14px] font-medium text-[#242424]">知识库分类</h3>
           </div>
           <div className="space-y-1 flex-1 overflow-y-auto pr-1">
             {CATEGORIES.map((category) => {
@@ -543,18 +542,18 @@ export default function BrandKnowledgeBase() {
                     setSearchTerm('');
                     closeEditPanel();
                   }}
-                  className={`w-full flex items-center justify-between px-3 py-2.5 rounded-lg text-sm transition-colors ${
+                  className={`w-full flex items-center justify-between px-3 py-2.5 rounded-[12px] text-[14px] transition-colors ${
                     activeCategory === category.id 
-                      ? 'bg-[#F8F9FA] text-[#111111] font-bold' 
+                      ? 'bg-[#F8F9FA] text-[#242424] font-medium' 
                       : 'text-[#6B6B6B] hover:bg-[#F8F9FA]'
                   }`}
                 >
                   <div className="flex items-center space-x-2.5">
-                    <Icon className={`w-4 h-4 ${activeCategory === category.id ? 'text-[#111111]' : 'text-[#6B6B6B]'}`} />
+                    <Icon className={`w-4 h-4 ${activeCategory === category.id ? 'text-[#242424]' : 'text-[#6B6B6B]'}`} />
                     <span className="truncate">{category.name}</span>
                   </div>
                   {pendingCount > 0 && (
-                    <span className="bg-red-500 text-white text-[10px] font-bold px-1.5 py-0.5 rounded-full">
+                    <span className="bg-red-500 text-white text-[10px] font-medium px-1.5 py-0.5 rounded-full">
                       {pendingCount}
                     </span>
                   )}
@@ -565,10 +564,10 @@ export default function BrandKnowledgeBase() {
         </div>
 
         {/* Right: Main Content Area (Level 1) */}
-        <div className="flex-1 flex flex-col min-w-0 bg-[#F8F9FA]/30 rounded-xl p-1 relative z-10">
+        <div className="flex-1 flex flex-col min-w-0 bg-[#F8F9FA]/30 rounded-[16px] p-1 relative z-10">
           <div className="mb-4 flex flex-col sm:flex-row sm:items-center justify-between gap-4 px-2">
             <div className="flex items-center space-x-4">
-              <h2 className="text-lg font-bold text-[#111111] flex items-center">
+              <h2 className="text-[18px] font-medium text-[#242424] flex items-center">
                 {currentCategory?.name}
               </h2>
               <div className="relative">
@@ -578,14 +577,14 @@ export default function BrandKnowledgeBase() {
                   placeholder="搜索..." 
                   value={searchTerm}
                   onChange={(e) => setSearchTerm(e.target.value)}
-                  className="pl-9 pr-4 py-1.5 bg-white border border-[#E5E5E5] rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-[#111111]/20 focus:border-[#111111] w-64 shadow-sm"
+                  className="pl-9 pr-4 py-1.5 bg-white border border-[#E5E5E5] rounded-[12px] text-[14px] focus:outline-none focus:ring-2 focus:ring-[#242424]/20 focus:border-[#242424] w-64 shadow-sm"
                 />
               </div>
             </div>
             
             <div className="flex items-center space-x-4">
               {/* Version History Info */}
-              <div className="hidden lg:flex items-center space-x-4 text-xs text-[#6B6B6B] bg-white px-3 py-1.5 rounded-lg border border-[#E5E5E5] shadow-sm">
+              <div className="hidden lg:flex items-center space-x-4 text-[12px] text-[#6B6B6B] bg-white px-3 py-1.5 rounded-[12px] border border-[#E5E5E5] shadow-sm">
                 <div className="flex items-center">
                   <Clock className="w-3.5 h-3.5 mr-1.5 text-[#6B6B6B]" />
                   <span>最后更新：{metadata[activeCategory]?.lastUpdated}</span>
@@ -598,7 +597,7 @@ export default function BrandKnowledgeBase() {
               </div>
               <button 
                 onClick={openAddPanel}
-                className="flex items-center px-3 py-1.5 bg-[#242424] text-white rounded-lg text-sm font-medium hover:bg-[#111111] transition-colors shadow-sm"
+                className="flex items-center px-3 py-1.5 bg-[#242424] text-white rounded-[12px] text-[14px] font-medium hover:bg-[#242424] transition-colors shadow-sm"
               >
                 <Plus className="w-4 h-4 mr-1.5" />
                 新增
@@ -626,7 +625,7 @@ export default function BrandKnowledgeBase() {
       {/* Floating RAG Playground Button */}
       <button
         onClick={() => setShowPlayground(!showPlayground)}
-        className="fixed bottom-8 right-8 w-14 h-14 bg-[#111111] text-white rounded-full shadow-2xl flex items-center justify-center hover:scale-105 transition-transform z-40"
+        className="fixed bottom-8 right-8 w-14 h-14 bg-[#242424] text-white rounded-full shadow-2xl flex items-center justify-center hover:scale-105 transition-transform z-40"
         title="检索沙箱 (RAG Playground)"
       >
         <Bot className="w-6 h-6" />
@@ -634,11 +633,11 @@ export default function BrandKnowledgeBase() {
 
       {/* RAG Playground Panel */}
       {showPlayground && (
-        <div className="fixed bottom-24 right-8 w-96 bg-white rounded-2xl shadow-2xl border border-[#E5E5E5] overflow-hidden flex flex-col z-50 animate-in slide-in-from-bottom-8">
-          <div className="bg-[#111111] text-white px-4 py-3 flex items-center justify-between">
+        <div className="fixed bottom-24 right-8 w-96 bg-white rounded-[24px] shadow-2xl border border-[#E5E5E5] overflow-hidden flex flex-col z-50 animate-in slide-in-from-bottom-8">
+          <div className="bg-[#242424] text-white px-4 py-3 flex items-center justify-between">
             <div className="flex items-center space-x-2">
               <Bot className="w-5 h-5" />
-              <span className="font-bold text-sm">检索沙箱 (RAG Playground)</span>
+              <span className="font-medium text-[14px]">检索沙箱 (RAG Playground)</span>
             </div>
             <button onClick={() => setShowPlayground(false)} className="text-[#6B6B6B] hover:text-white transition-colors">
               <X className="w-4 h-4" />
@@ -646,21 +645,21 @@ export default function BrandKnowledgeBase() {
           </div>
           <div className="flex-1 p-4 bg-[#F8F9FA] h-80 overflow-y-auto space-y-4">
             <div className="flex flex-col space-y-1 items-end">
-              <div className="bg-[#111111] text-white px-4 py-2 rounded-2xl rounded-tr-sm text-sm max-w-[85%]">
+              <div className="bg-[#242424] text-white px-4 py-2 rounded-[24px] rounded-tr-sm text-[14px] max-w-[85%]">
                 帮我写个关于“血河小狗”的文案
               </div>
             </div>
             <div className="flex flex-col space-y-1 items-start">
-              <div className="bg-white border border-[#E5E5E5] text-[#242424] px-4 py-3 rounded-2xl rounded-tl-sm text-sm max-w-[90%] leading-relaxed shadow-sm">
-                听说大家都在找那只因为<span className="bg-[#F8F9FA] text-[#111111] px-1 rounded cursor-help group relative">圈圈眼bug意外走红<div className="absolute bottom-full left-0 mb-2 w-48 bg-[#242424] text-white text-[12px] p-2 rounded shadow-lg hidden group-hover:block z-50">引用自：碎片化客观事实 &gt; 血河小狗 IP 的客观事实</div></span>的血河小狗？官方主推的<span className="bg-[#F8F9FA] text-[#111111] px-1 rounded cursor-help group relative">福宝宝<div className="absolute bottom-full left-0 mb-2 w-48 bg-[#242424] text-white text-[12px] p-2 rounded shadow-lg hidden group-hover:block z-50">引用自：碎片化客观事实 &gt; 血河小狗 IP 的客观事实</div></span>都要吃醋啦！快来游戏里看看这只新晋顶流吧！🐶
+              <div className="bg-white border border-[#E5E5E5] text-[#242424] px-4 py-3 rounded-[24px] rounded-tl-sm text-[14px] max-w-[90%] leading-relaxed shadow-sm">
+                听说大家都在找那只因为<span className="bg-[#F8F9FA] text-[#242424] px-1 rounded cursor-help group relative">圈圈眼bug意外走红<div className="absolute bottom-full left-0 mb-2 w-48 bg-[#242424] text-white text-[12px] p-2 rounded shadow-lg hidden group-hover:block z-50">引用自：碎片化客观事实 &gt; 血河小狗 IP 的客观事实</div></span>的血河小狗？官方主推的<span className="bg-[#F8F9FA] text-[#242424] px-1 rounded cursor-help group relative">福宝宝<div className="absolute bottom-full left-0 mb-2 w-48 bg-[#242424] text-white text-[12px] p-2 rounded shadow-lg hidden group-hover:block z-50">引用自：碎片化客观事实 &gt; 血河小狗 IP 的客观事实</div></span>都要吃醋啦！快来游戏里看看这只新晋顶流吧！🐶
               </div>
               <span className="text-[10px] text-[#6B6B6B] ml-1">AI 已调用知识库生成，带高亮背景为引用溯源</span>
             </div>
           </div>
           <div className="p-3 bg-white border-t border-[#E5E5E5]">
             <div className="relative">
-              <input type="text" placeholder="测试知识库调用..." className="w-full bg-[#F8F9FA] border-none rounded-full pl-4 pr-10 py-2 text-sm focus:ring-2 focus:ring-[#111111]/20" />
-              <button className="absolute right-2 top-1/2 transform -translate-y-1/2 text-[#111111] p-1">
+              <input type="text" placeholder="测试知识库调用..." className="w-full bg-[#F8F9FA] border-none rounded-full pl-4 pr-10 py-2 text-[14px] focus:ring-2 focus:ring-[#242424]/20" />
+              <button className="absolute right-2 top-1/2 transform -translate-y-1/2 text-[#242424] p-1">
                 <ChevronRight className="w-4 h-4" />
               </button>
             </div>
@@ -671,10 +670,10 @@ export default function BrandKnowledgeBase() {
       {/* AI Import Modal */}
       {showImportModal && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 backdrop-blur-sm">
-          <div className="bg-white rounded-xl shadow-xl border border-[#E5E5E5] w-full max-w-lg overflow-hidden animate-in fade-in zoom-in-95 duration-200">
+          <div className="bg-white rounded-[16px] shadow-xl border border-[#E5E5E5] w-full max-w-lg overflow-hidden animate-in fade-in zoom-in-95 duration-200">
             <div className="p-6 border-b border-[#E5E5E5] flex justify-between items-center">
-              <h3 className="text-lg font-bold text-[#111111] flex items-center">
-                <Wand2 className="w-5 h-5 mr-2 text-[#111111]" />
+              <h3 className="text-[18px] font-medium text-[#242424] flex items-center">
+                <Wand2 className="w-5 h-5 mr-2 text-[#242424]" />
                 AI 辅助录入知识
               </h3>
               <button onClick={() => setShowImportModal(false)} className="text-[#6B6B6B] hover:text-[#242424]">
@@ -683,10 +682,10 @@ export default function BrandKnowledgeBase() {
             </div>
             <div className="p-6 space-y-4">
               <div>
-                <label className="block text-sm font-bold text-[#444444] mb-2">粘贴外部链接 (公众号/小红书/公告)</label>
+                <label className="block text-[14px] font-medium text-[#444444] mb-2">粘贴外部链接 (公众号/小红书/公告)</label>
                 <div className="flex space-x-2">
-                  <input type="text" placeholder="https://" className="flex-1 border border-[#E5E5E5] rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-[#111111]/20" />
-                  <button className="bg-[#242424] text-white px-4 py-2 rounded-lg text-sm font-medium hover:bg-[#111111]">解析</button>
+                  <input type="text" placeholder="https://" className="flex-1 border border-[#E5E5E5] rounded-[12px] px-3 py-2 text-[14px] focus:outline-none focus:ring-2 focus:ring-[#242424]/20" />
+                  <button className="bg-[#242424] text-white px-4 py-2 rounded-[12px] text-[14px] font-medium hover:bg-[#242424]">解析</button>
                 </div>
               </div>
               <div className="relative flex py-2 items-center">
@@ -694,11 +693,11 @@ export default function BrandKnowledgeBase() {
                 <span className="flex-shrink-0 mx-4 text-[#6B6B6B] text-[12px]">或</span>
                 <div className="flex-grow border-t border-[#E5E5E5]"></div>
               </div>
-              <div className="border-2 border-dashed border-[#E5E5E5] rounded-xl p-8 text-center hover:bg-[#F8F9FA] transition-colors cursor-pointer">
+              <div className="border-2 border-dashed border-[#E5E5E5] rounded-[16px] p-8 text-center hover:bg-[#F8F9FA] transition-colors cursor-pointer">
                 <div className="w-12 h-12 bg-[#F8F9FA] rounded-full flex items-center justify-center mx-auto mb-3">
-                  <Plus className="w-6 h-6 text-[#111111]" />
+                  <Plus className="w-6 h-6 text-[#242424]" />
                 </div>
-                <p className="text-sm font-bold text-[#444444]">点击或拖拽文件上传</p>
+                <p className="text-[14px] font-medium text-[#444444]">点击或拖拽文件上传</p>
                 <p className="text-[12px] text-[#6B6B6B] mt-1">支持 Word, PDF, Excel, TXT</p>
               </div>
             </div>
@@ -709,13 +708,13 @@ export default function BrandKnowledgeBase() {
       {/* Delete Confirmation Modal */}
       {deleteConfirmId !== null && (
         <div className="fixed inset-0 z-60 flex items-center justify-center bg-black/50 backdrop-blur-sm">
-          <div className="bg-white rounded-xl shadow-xl border border-[#E5E5E5] w-full max-w-md overflow-hidden animate-in fade-in zoom-in-95 duration-200">
+          <div className="bg-white rounded-[16px] shadow-xl border border-[#E5E5E5] w-full max-w-md overflow-hidden animate-in fade-in zoom-in-95 duration-200">
             <div className="p-6">
               <div className="flex items-center space-x-3 mb-4">
                 <div className="w-10 h-10 rounded-full bg-red-50 flex items-center justify-center flex-shrink-0">
                   <AlertTriangle className="w-5 h-5 text-red-500" />
                 </div>
-                <h3 className="text-lg font-bold text-[#111111]">确认删除词条？</h3>
+                <h3 className="text-[18px] font-medium text-[#242424]">确认删除词条？</h3>
               </div>
               <p className="text-[12px] text-[#6B6B6B] ml-13 leading-relaxed">
                 删除后该词条将从知识库中移除，且无法恢复。确定要继续吗？
@@ -724,13 +723,13 @@ export default function BrandKnowledgeBase() {
             <div className="bg-[#F8F9FA] px-6 py-4 flex items-center justify-end space-x-3 border-t border-[#E5E5E5]">
               <button 
                 onClick={cancelDelete}
-                className="px-4 py-2 text-sm font-medium text-[#444444] bg-white border border-[#E5E5E5] rounded-lg hover:bg-[#F8F9FA] transition-colors"
+                className="px-4 py-2 text-[14px] font-medium text-[#444444] bg-white border border-[#E5E5E5] rounded-[12px] hover:bg-[#F8F9FA] transition-colors"
               >
                 取消
               </button>
               <button 
                 onClick={executeDelete}
-                className="px-4 py-2 text-sm font-medium text-white bg-red-600 rounded-lg hover:bg-red-700 transition-colors shadow-sm"
+                className="px-4 py-2 text-[14px] font-medium text-white bg-red-600 rounded-[12px] hover:bg-red-700 transition-colors shadow-sm"
               >
                 确认删除
               </button>
@@ -741,9 +740,9 @@ export default function BrandKnowledgeBase() {
 
       {/* Toast */}
       {showSaveToast && (
-        <div className="fixed bottom-6 right-6 bg-[#242424] text-white px-4 py-3 rounded-lg shadow-lg flex items-center space-x-2 animate-in fade-in slide-in-from-bottom-4 z-60">
+        <div className="fixed bottom-6 right-6 bg-[#242424] text-white px-4 py-3 rounded-[12px] shadow-lg flex items-center space-x-2 animate-in fade-in slide-in-from-bottom-4 z-60">
           <CheckCircle2 className="w-5 h-5 text-green-400" />
-          <span className="text-sm font-medium">已成功保存至品牌知识库</span>
+          <span className="text-[14px] font-medium">已成功保存至品牌知识库</span>
         </div>
       )}
     </div>

@@ -36,7 +36,7 @@ const SOV_DATA = [
   { name: '竞品C', value: 12 },
 ];
 
-const COLORS = ['#111111', '#639FAB', '#82A7A6', '#B4C5C6'];
+const COLORS = ['#242424', '#639FAB', '#82A7A6', '#B4C5C6'];
 
 export default function CompetitorComparison() {
   const [activeTab, setActiveTab] = useState('按声量对比');
@@ -53,17 +53,17 @@ export default function CompetitorComparison() {
   return (
     <div className="w-full px-6 lg:px-10 mx-auto space-y-6 pb-12">
       <div className="flex items-center justify-between mb-8">
-        <h1 className="text-2xl font-bold text-[#111111]">竞品对比</h1>
-        <div className="flex bg-[#F4F4F4] p-1 rounded-lg">
+        <h1 className="text-[24px] font-medium text-[#242424]">竞品对比</h1>
+        <div className="flex bg-[#F4F4F4] p-1 rounded-[12px]">
           {['按声量对比', '按互动量对比', '按提及人数对比'].map(tab => (
             <button
               type="button"
               key={tab}
               onClick={() => setActiveTab(tab)}
-              className={`px-4 py-2 text-sm font-medium rounded-md transition-colors ${
+              className={`px-4 py-2 text-[14px] font-medium rounded-[8px] transition-colors ${
                 activeTab === tab 
-                  ? 'bg-white text-[#111111] shadow-sm' 
-                  : 'text-[#6B6B6B] hover:text-[#111111]'
+                  ? 'bg-white text-[#242424] shadow-sm' 
+                  : 'text-[#6B6B6B] hover:text-[#242424]'
               }`}
             >
               {tab}
@@ -74,8 +74,8 @@ export default function CompetitorComparison() {
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
         {/* SOV (Share of Voice) */}
-        <div className="bg-white rounded-xl p-6 shadow-sm border border-[#E5E5E5] lg:col-span-1 flex flex-col">
-          <h3 className="text-base font-bold text-[#111111] mb-6">SOV (声量份额) 战局</h3>
+        <div className="bg-white rounded-[16px] p-6 shadow-sm border border-[#E5E5E5] lg:col-span-1 flex flex-col">
+          <h3 className="text-[16px] font-medium text-[#242424] mb-6">SOV (声量份额) 战局</h3>
           <div className="flex-1">
             <ResponsiveContainer width="100%" height={300}>
               <BarChart
@@ -85,7 +85,7 @@ export default function CompetitorComparison() {
               >
                 <CartesianGrid strokeDasharray="3 3" horizontal={false} stroke="#E5E7EB" />
                 <XAxis type="number" hide />
-                <YAxis dataKey="name" type="category" axisLine={false} tickLine={false} tick={{ fontSize: 12, fill: '#111111', fontWeight: 500 }} />
+                <YAxis dataKey="name" type="category" axisLine={false} tickLine={false} tick={{ fontSize: 12, fill: '#242424', fontWeight: 500 }} />
                 <Tooltip 
                   cursor={{ fill: '#F3F4F6' }}
                   contentStyle={{ borderRadius: '8px', border: 'none', boxShadow: '0 4px 6px -1px rgb(0 0 0 / 0.1)', fontFamily: 'JetBrains Mono' }}
@@ -102,21 +102,21 @@ export default function CompetitorComparison() {
         </div>
 
         {/* Multi-dimensional Trend */}
-        <div className="bg-white rounded-xl p-6 shadow-sm border border-[#E5E5E5] lg:col-span-2 flex flex-col">
+        <div className="bg-white rounded-[16px] p-6 shadow-sm border border-[#E5E5E5] lg:col-span-2 flex flex-col">
           <div className="flex items-center justify-between mb-6">
-            <h3 className="text-base font-bold text-[#111111]">多维缠斗曲线</h3>
+            <h3 className="text-[16px] font-medium text-[#242424]">多维缠斗曲线</h3>
             <div className="flex items-center space-x-4">
               {['本品', '竞品A', '竞品B', '竞品C'].map((brand, idx) => (
                 <button 
                   type="button"
                   key={brand}
                   onClick={() => handleLegendClick(brand)}
-                  className={`flex items-center text-sm transition-opacity ${
+                  className={`flex items-center text-[14px] transition-opacity ${
                     highlightedBrand && highlightedBrand !== brand ? 'opacity-30' : 'opacity-100'
                   }`}
                 >
                   <span className="w-3 h-3 rounded-full mr-2" style={{ backgroundColor: COLORS[idx] }}></span>
-                  <span className="font-medium text-[#111111]">{brand}</span>
+                  <span className="font-medium text-[#242424]">{brand}</span>
                 </button>
               ))}
             </div>
@@ -131,7 +131,7 @@ export default function CompetitorComparison() {
                 <XAxis dataKey="date" axisLine={false} tickLine={false} tick={{ fontSize: 12, fill: '#6B7280', fontFamily: 'JetBrains Mono' }} dy={10} />
                 <YAxis axisLine={false} tickLine={false} tick={{ fontSize: 12, fill: '#6B7280', fontFamily: 'JetBrains Mono' }} />
                 <Tooltip 
-                  contentStyle={{ backgroundColor: '#111111', color: '#fff', borderRadius: '8px', border: 'none', fontFamily: 'JetBrains Mono' }}
+                  contentStyle={{ backgroundColor: '#242424', color: '#fff', borderRadius: '8px', border: 'none', fontFamily: 'JetBrains Mono' }}
                   itemStyle={{ color: '#fff' }}
                 />
                 <Line 

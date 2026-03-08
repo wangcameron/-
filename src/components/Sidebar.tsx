@@ -108,7 +108,7 @@ export default function Sidebar({ activeNav, setActiveNav }: SidebarProps) {
             {RECENT_ITEMS.map((item, idx) => (
               <button 
                 key={idx}
-                className={`group flex items-center ${isExpanded ? 'justify-start px-3 py-2' : 'justify-center w-10 h-10 mx-auto'} rounded-md transition-colors text-[#444444] hover:bg-[#EAE8E3]/60 font-normal w-full`}
+                className={`group flex items-center ${isExpanded ? 'justify-start px-3 py-2' : 'justify-center w-10 h-10 mx-auto'} rounded-[8px] transition-colors text-[#444444] hover:bg-[#EAE8E3]/60 font-normal w-full`}
                 title={!isExpanded ? item.title : undefined}
               >
                 <div className="flex-shrink-0 transition-transform duration-200 group-hover:scale-110 group-active:scale-90">
@@ -128,7 +128,7 @@ export default function Sidebar({ activeNav, setActiveNav }: SidebarProps) {
       {/* Bottom Section (User Profile Placeholder) */}
       <div className="p-2 border-t border-[#E5E5E5]">
         <button 
-          className={`group flex items-center ${isExpanded ? 'justify-start px-3 py-2' : 'justify-center w-10 h-10 mx-auto'} rounded-md text-[#444444] hover:bg-[#EAE8E3]/60 transition-colors w-full`}
+          className={`group flex items-center ${isExpanded ? 'justify-start px-3 py-2' : 'justify-center w-10 h-10 mx-auto'} rounded-[8px] text-[#444444] hover:bg-[#EAE8E3]/60 transition-colors w-full`}
         >
           <div className="w-5 h-5 rounded-full bg-[#242424] text-white flex items-center justify-center text-[10px] font-medium flex-shrink-0 transition-transform duration-200 group-hover:scale-110 group-active:scale-90">
             U
